@@ -3,8 +3,11 @@ $(document).ready(function(){
   });
 });
 
-//26-5-2020 update: possibly shorter, and better, since 'click' now fires on a tap, and is not prevented by the previous script. 
-//Also: more concatenation.
+/* https://www.hnldesign.nl/work/code/mouseover-hover-on-touch-devices-using-jquery/
+https://gist.github.com/c-kick/31dfbfe7b948c16d17c8
+26-5-2020 update: possibly shorter, and better, since 'click' now fires on a tap, and is not prevented by the previous script. 
+Also: more concatenation.
+*/
 $(document).on('touchstart, click', 'body.taphover', function (e) {
     if (!$(this).hasClass('hover')) { e.preventDefault(); }
     $('.taphover').not($(this).toggleClass('hover')).removeClass('hover');
