@@ -2,7 +2,7 @@ $('body').bind('touchstart', function() {});
 
 //26-5-2020 update: possibly shorter, and better, since 'click' now fires on a tap, and is not prevented by the previous script. 
 //Also: more concatenation.
-$(document).on('touchstart, click', 'a.taphover', function (e) {
+$(document).on('touchstart, click', 'canvas.taphover', function (e) {
     if (!$(this).hasClass('hover')) { e.preventDefault(); }
     $('.taphover').not($(this).toggleClass('hover')).removeClass('hover');
 });
