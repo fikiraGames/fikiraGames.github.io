@@ -1,7 +1,9 @@
+/*
 $(document).ready(function(){
   $('body').bind('touchstart', function(){
   });
 });
+*/
 
 /* https://www.hnldesign.nl/work/code/mouseover-hover-on-touch-devices-using-jquery/
 https://gist.github.com/c-kick/31dfbfe7b948c16d17c8
