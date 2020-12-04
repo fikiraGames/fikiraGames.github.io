@@ -1,4 +1,7 @@
-$('body').bind('touchstart', function() {});
+$(document).ready(function(){
+  $('body').bind('touchstart', function(){
+  });
+});
 
 //26-5-2020 update: possibly shorter, and better, since 'click' now fires on a tap, and is not prevented by the previous script. 
 //Also: more concatenation.
