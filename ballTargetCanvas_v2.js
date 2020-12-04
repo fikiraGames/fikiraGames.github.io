@@ -1,6 +1,8 @@
 
 "use strict";
 
+$('body').bind('touchstart', function() {});
+
 /*
 let screenLog = document.querySelector('#screen-log');
 document.addEventListener('mousemove', logKey);
