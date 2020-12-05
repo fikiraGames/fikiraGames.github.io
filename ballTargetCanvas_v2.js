@@ -51,7 +51,7 @@ var ctx               = canvas.getContext("2d");
 var i 				  = 0;
 
 let width = document.querySelector('#width');
-width.innerText = "canvas width = " + canvas.clientWidth + ", " + "body width = " + body.clientWidth;
+width.innerText = "canvas width = " + canvas.clientWidth + ", " + "body width = " + body.clientWidth + ", " + "body heigth = " + body.clientHeigth;
 
 // ------------------------------------------------------------------------------------------------------------------------ //
 // variables
