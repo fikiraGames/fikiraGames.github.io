@@ -43,6 +43,13 @@ function logKey(e) {
 //---------------------------------------------------------------------------
 
 
+$(document).on('touchstart, click', 'body.taphover', function (e) {
+    if (!$(this).hasClass('hover')) { e.preventDefault(); }
+    $('.taphover').not($(this).toggleClass('hover')).removeClass('hover');
+});
+
+// $("#myCanvas").hide() 
+
 // https://developer.mozilla.org/en-US/docs/Games/Tutorials/2D_Breakout_game_pure_JavaScript/Paddle_and_keyboard_controls
 var canvas            = document.getElementById("myCanvas");
 var ctx               = canvas.getContext("2d");
