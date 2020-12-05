@@ -43,7 +43,7 @@ function logKey(e) {
 //---------------------------------------------------------------------------
 
 
-$("#myCanvas").on('touchmove, click', 'body.taphover', function (e) {
+$(document).on('touchmove, click', 'body.taphover', function (e) {
     if (!$(this).hasClass('hover')) { e.preventDefault(); }
     $('.taphover').not($(this).toggleClass('hover')).removeClass('hover');
 });
