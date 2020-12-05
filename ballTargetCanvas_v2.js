@@ -201,7 +201,7 @@ drawRect(a10, b10, h ,  w10, '#FFFF00');
 function paint(event) {
 /*   x,  y = position middle of ball; cX, cY = "client" = mouse; px, py = position x, y + px  */
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  var cX = event.touches[0].clientX - 440; // Because '0' of canvas left edge lays 440px to the right
+  var cX = event.touches[0].clientX; // Because '0' of canvas left edge lays 440px to the right
   var cY = event.touches[0].clientY;
   var ballr3 = (ballRadius / 3);
   var xEdgeL = x  - ballRadius <= 0            ;
