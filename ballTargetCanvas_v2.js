@@ -1,7 +1,7 @@
 
 "use strict";
 
-/*
+
 let screenLog = document.querySelector('#screen-log');
 document.addEventListener('mousemove', logKey);
 
@@ -10,7 +10,7 @@ function logKey(e) {
     Canvas X/Y: ${e.screenX - 440}, ${e.screenY - 134}
     Client X/Y: ${e.clientX}, ${e.clientY}`;
 }
-*/
+
 
 //
 //
