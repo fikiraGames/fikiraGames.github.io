@@ -1,7 +1,7 @@
 
 "use strict";
 
-
+/*
 let screenLog = document.querySelector('#screen-log');
 document.addEventListener('touchmove', logKey);
 
@@ -10,7 +10,7 @@ function logKey(e) {
     Canvas X/Y: ${e.screenX - 440}, ${e.screenY - 134}
     Client X/Y: ${e.touches[0].clientX}, ${e.touches[0].clientY}`;
 }
-
+*/
 
 //
 //
