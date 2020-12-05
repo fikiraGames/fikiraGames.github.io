@@ -47,6 +47,7 @@ function logKey(e) {
 var canvas            = document.getElementById("myCanvas");
 var ctx               = canvas.getContext("2d");
 var i 				  = 0;
+canvas.ontouchstart = paint(event);
 
 // ------------------------------------------------------------------------------------------------------------------------ //
 // variables
