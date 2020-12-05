@@ -3,7 +3,7 @@
 
 
 let screenLog = document.querySelector('#screen-log');
-document.addEventListener('mousemove', logKey);
+document.addEventListener('touchmove', logKey);
 
 function logKey(e) {
   screenLog.innerText = `
