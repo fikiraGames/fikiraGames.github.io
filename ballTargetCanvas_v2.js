@@ -45,6 +45,8 @@ function logKey(e) {
 
 // https://developer.mozilla.org/en-US/docs/Games/Tutorials/2D_Breakout_game_pure_JavaScript/Paddle_and_keyboard_controls
 var canvas            = document.getElementById("myCanvas");
+var body              = document.getElementById("myBody");
+
 var ctx               = canvas.getContext("2d");
 var i 				  = 0;
 
