@@ -66,6 +66,7 @@ var x          = ballRadius * 20.0;
 var y          = ballRadius * 24 - 1;
 //var y          = ballRadius * 8 - ballRadius - 1;
 
+/*
 let screenLog  = document.querySelector('#screen-log');
 document.addEventListener('mousemove', logKey);
 
@@ -74,6 +75,7 @@ function logKey(e) {
     Canvas X/Y: ${e.screenX}, ${e.screenY}
     Client X/Y: ${e.clientX}, ${e.clientY}` + ' bodyW ' + bodyW + ' bodyH ' + bodyH;
 }
+*/
 
 var a = Math.round(2 * (Math.sqrt( Math.pow( (ballRadius + spinR1) * 1.03, 2) / 2)));
 
@@ -145,7 +147,6 @@ var wBounce    = ballRadius *  0.6;
 var hardBounce = ballRadius *  1.2;
 
 // ------------------------------------------------------------------------------------------------------------------------ //
-
 
 function drawRect(x, y, width, height, color) {
   ctx.beginPath();
@@ -235,8 +236,15 @@ drawRect(a12, b12, h ,  w12, '#FFFF00');
 function paint(event) {
 /*   x,  y = position middle of ball; cX, cY = "client" = mouse; px, py = position x, y + px  */
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  var cX = event.touches[0].clientX; // Because '0' of canvas left edge lays 440px to the right
+	
+/* for touch devices (smartphone, tablet,...
+
+  var cX = event.touches[0].clientX; 
   var cY = event.touches[0].clientY;
+*/	
+  var cX = event.clientX; 
+  var cY = event.clientY;
+	
   var ballr3 = (ballRadius / 3);
   var xEdgeL = x  - ballRadius <= 0            ;
   var xEdgeR = x  + ballRadius >= canvas.width ;
