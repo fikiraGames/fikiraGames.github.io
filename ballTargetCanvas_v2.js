@@ -58,8 +58,8 @@ var spinR1     = ballRadius /  6  ;
 
 // ball x
 var x          = ballRadius * 20.0; 
-var y          = ballRadius * 24 - 1;
-// var y          = ballRadius * 8 - ballRadius - 1;
+//var y          = ballRadius * 24 - 1;
+var y          = ballRadius * 8 - ballRadius - 1;
 
 let screenLog  = document.querySelector('#screen-log');
 document.addEventListener('mousemove', logKey);
