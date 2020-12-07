@@ -33,6 +33,11 @@
 
 // https://developer.mozilla.org/en-US/docs/Games/Tutorials/2D_Breakout_game_pure_JavaScript/Paddle_and_keyboard_controls
 var canvas            = document.getElementById("myCanvas");
+canvas.addEventListener("touchstart",  function(event) {event.preventDefault()})
+canvas.addEventListener("touchmove",   function(event) {event.preventDefault()})
+canvas.addEventListener("touchend",    function(event) {event.preventDefault()})
+canvas.addEventListener("touchcancel", function(event) {event.preventDefault()})
+
 var body              = document.getElementById("myBody");
 
 var ctx               = canvas.getContext("2d");
