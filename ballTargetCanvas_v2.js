@@ -229,6 +229,10 @@ drawRect(a10, b10, h ,  w10, '#FFFF00');
 drawRect(a11, b11, h ,  w11, '#FFFF00');
 drawRect(a12, b12, h ,  w12, '#FFFF00');
 
+// end game box
+drawRect(23*ballRadius, 2*ballRadius, 3*ballRadius,            h, '#FFFF00');
+drawRect(23*ballRadius,            0,            h, 2*ballRadius, '#FFFF00');
+
 // ------------------------------------------------------------------------------------------------------------------------ //
 // ------------------------------------------------------------------------------------------------------------------------ //
 // ------------------------------------------------------------------------------------------------------------------------ //
@@ -365,6 +369,10 @@ function paint(event) {
   drawRect(      a11,       b11,           h, w11, '#FFFF00');
   drawRect(      a12,       b12,           h, w12, '#FFFF00');
 
+  // end game box
+  drawRect(23*ballRadius, 2*ballRadius, 3*ballRadius,            h, '#FFFF00');
+  drawRect(23*ballRadius,            0,            h, 2*ballRadius, '#FFFF00');
+
   sX0 += 1; sX1 += 1; sX2 += 1; sX3 += 1; sX4 += 1; sX5 += 1;
 
   sYa += 1; sYb += 1; sYc += 1; sYd += 1; sYe += 1;
@@ -394,6 +402,10 @@ function paint(event) {
   drawBall(25*ballRadius - Math.round(Math.sqrt(Math.pow(spinRSmall, 2) - Math.pow(sYc, 2))), sYc, spinR1, 0, '#9219c2');
   drawBall(25*ballRadius - Math.round(Math.sqrt(Math.pow(spinRSmall, 2) - Math.pow(sYd, 2))), sYd, spinR1, 0, '#9219c2');
   drawBall(25*ballRadius - Math.round(Math.sqrt(Math.pow(spinRSmall, 2) - Math.pow(sYe, 2))), sYe, spinR1, 0, '#9219c2');
+  
+  if (x > canvas.width - ballRadius && y < 2.5*ballRadius) {
+    alert('Congratulations! You\'ve made it!')
+  };
 
 };
 
