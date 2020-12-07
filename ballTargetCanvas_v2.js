@@ -242,7 +242,7 @@ function paint(event) {
   var cX = event.touches[0].clientX; 
   var cY = event.touches[0].clientY;
 */	
-  var cX = event.clientX; 
+  var cX = event.clientX + 440; 
   var cY = event.clientY;
 	
   var ballr3 = (ballRadius / 3);
