@@ -62,6 +62,20 @@ function log(msg) {
   var p = document.getElementById('log');
   p.innerHTML = msg + "\n" + p.innerHTML;
 }
+	
+function findPos (obj) {
+    var curleft = 0,
+        curtop = 0;
+
+    if (obj.offsetParent) {
+        do {
+            curleft += obj.offsetLeft;
+            curtop += obj.offsetTop;
+        } while (obj = obj.offsetParent);
+
+        return { x: curleft-document.body.scrollLeft, y: curtop-document.body.scrollTop };
+    }
+}
 /*	
 canvas.addEventListener("touchstart",  function(event) {event.preventDefault()})
 canvas.addEventListener("touchmove",   function(event) {event.preventDefault()})
