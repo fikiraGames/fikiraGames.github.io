@@ -48,9 +48,9 @@ function findPos (obj) {
         } while (obj = obj.offsetParent);
 
         return { x: curleft-document.body.scrollLeft, y: curtop-document.body.scrollTop };
-    log("x: " + x)
-    log("y: " + x)
-    }	
+    }
+    log("x: " + x);
+    log("y: " + y);
 }	
 		
 let screenLog = document.querySelector('#screen-log');
