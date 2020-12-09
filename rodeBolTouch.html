@@ -61,7 +61,7 @@ function logKey(e) {
   var offset = findPos(e);  
   screenLog.innerText = `
     Canvas X/Y: ${e.screenX}, ${e.screenY}
-    Client X/Y: ${touches[0].clientX-offset.x}, ${touches[0].clientY-offset.y}`;
+    Client X/Y: ${log(x)}, ${log(y)}`;
 }
 
 var canvas = document.getElementsByTagName("canvas")[0];
