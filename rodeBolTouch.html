@@ -14,32 +14,16 @@
  <canvas ontouchstart="paint(event)" ontouchmove="paint(event)" id="myCanvas" width="800" height="800"> </canvas>
  <br>
  <button class="center"><a href="index.html">Home</a></button>
- <button onclick="findPos (obj);">Initialize</button>
 
  <br>
   Log: <pre id="log" style="border: 1px solid #ccc;"></pre>
+	
 <script>	 
 
-function log(msg) {
+function log(event) {
   var p = document.getElementById('log');
-  p.innerHTML = msg + "\n" + p.innerHTML;
+  p.innerHTML = "x: " + event.touches[0].clientX + "\n" + "y: " + event.touches[0].clientY;
 }
- 
-function findPos (obj) {
-    var curleft = 0,
-        curtop = 0;
-
-    if (obj.offsetParent) {
-        do {
-            curleft += obj.offsetLeft;
-            curtop += obj.offsetTop;
-        } while (obj = obj.offsetParent);
-
-        return { x: curleft-document.body.scrollLeft, y: curtop-document.body.scrollTop };
-    }
-    log("x: " + x);
-    log("y: " + y);
-}	
 	
 var canvas = document.getElementsByTagName("canvas")[0];
 var ctx = canvas.getContext("2d");
