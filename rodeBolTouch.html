@@ -34,17 +34,25 @@ function startup() {
   el.addEventListener("touchmove", handleMove, false);
   log("initialized.");
 }	
-function handleMove(event) {
-  var canvas  = document.getElementsByTagName("canvas")[0];
-  var ctx     = canvas.getContext("2d");
-  var touches = event.changedTouches;
-  var offset  = findPos(canvas);
+function handleMove(evt) {
+
+  var el = document.getElementsByTagName("canvas")[0];
+  var ctx = el.getContext("2d");
+  var touches = evt.changedTouches;
+  var offset = findPos(el);
+
   for (var i = 0; i < touches.length; i++) {
-      if(touches[i].clientX-offset.x >0 && touches[i].clientX-offset.x < parseFloat(canvas.width) && touches[i].clientY-offset.y >0 && touches[i].clientY-offset.y < parseFloat(canvas.height)){
-              event.preventDefault();
+        if(touches[i].clientX-offset.x >0 && touches[i].clientX-offset.x < parseFloat(el.width) && touches[i].clientY-offset.y >0 && touches[i].clientY-offset.y < parseFloat(el.height)){
+              evt.preventDefault();
     var idx = ongoingTouchIndexById(touches[i].identifier);
-    log("ctx.moveTo(" + ongoingTouches[idx].clientX + ", " + ongoingTouches[idx].clientY + ");");
+    
+    if (idx >= 0) {
+      log("ctx.moveTo(" + ongoingTouches[idx].clientX + ", " + ongoingTouches[idx].clientY + ");");
+    } else {
+      log("can't figure out which touch to continue");
+    }
   }
+        }
 }
 function log(msg) {
   var p = document.getElementById('log');
