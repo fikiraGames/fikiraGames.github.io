@@ -16,6 +16,8 @@
  <button class="center"><a href="index.html">Home</a></button>
 
  <p id="screen-log"></p>
+ <button onclick="window.startup();">Initialize</button>
+
  <br>
   Log: <pre id="log" style="border: 1px solid #ccc;"></pre>
 <script>	 
@@ -34,8 +36,8 @@ function startup() {
   el.addEventListener("touchmove", handleMove, false);
   log("initialized.");
 }	
+	
 function handleMove(evt) {
-
   var el = document.getElementsByTagName("canvas")[0];
   var ctx = el.getContext("2d");
   var touches = evt.changedTouches;
