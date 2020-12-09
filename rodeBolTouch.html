@@ -43,10 +43,14 @@ function logKey(e) {
   var cy = Math.round(e.touches[0].clientY*100)/100;
   var sx = Math.round(e.touches[0].screenX*100)/100;
   var sy = Math.round(e.touches[0].screenY*100)/100;
-	
+  //  var bodyWidth = document.body.clientWidth;
+  var windowWidth = window.innerWidth
+  var offset = (windowWidth - canvas.width) / 2;
   screenLog.innerText = `
     Client X/Y: ${cx}, ${cy}
-    Screen X/Y: ${sx}, ${sy}`;
+    Screen X/Y: ${sx}, ${sy}
+    window Width: ${windowWidth}
+    offset: ${offset}`;
 }
 
 canvas.addEventListener("touchstart",  function(event) {event.preventDefault()})
@@ -71,15 +75,19 @@ function drawBall(x, y, ballRadius, z, color) {
 drawBall(       x ,        y ,  ballRadius,  0 , '#cf0c0c');
 
 function paint(event) {
-/*   x,  y = position middle of ball; cX, cY = "client" = mouse; px, py = position x, y + px  */
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  var cX = event.touches[0].clientX; 
+  var canvas      = document.getElementById("myCanvas");
+  var ctx         = canvas.getContext("2d");
+  var windowWidth = window.innerWidth
+  var offset = (windowWidth - canvas.width) / 2;  
+  var cX = event.touches[0].clientX - offset; 
   var cY = event.touches[0].clientY;
+/*   x,  y = position middle of ball; cX, cY = "client" = mouse; px, py = position x, y + px  */
   var ballr3 = (ballRadius / 3);
   var xEdgeL = x  - ballRadius <= 0            ;
   var xEdgeR = x  + ballRadius >= canvas.width ;
   var yEdgeT = y  - ballRadius <= 0            ;
   var yEdgeB = y  + ballRadius >= canvas.height;
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
 
   if (xEdgeL) {x += xBounce;}
   else if (xEdgeR) {x -= xBounce;}
