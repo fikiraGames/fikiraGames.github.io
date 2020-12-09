@@ -24,11 +24,14 @@ let screenLog = document.querySelector('#screen-log');
 document.addEventListener('touchmove', logKey);
 
 function logKey(e) {
-  var cx = Math.round(e.touches[0].clientX*100)/100	
-  var sx = Math.round(e.touches[0].screenX*100)/100
+  var cx = Math.round(e.touches[0].clientX*100)/100;
+  var cy = Math.round(e.touches[0].clientY*100)/100;
+  var sx = Math.round(e.touches[0].screenX*100)/100;
+  var sy = Math.round(e.touches[0].screenY*100)/100;
+	
   screenLog.innerText = `
-    Client X/Y: ${cx}, ${Math.round(e.touches[0].clientY*100)/100}
-    Screen X/Y: ${sx}, ${Math.round(e.touches[0].clientY*100)/100}`;
+    Client X/Y: ${cx}, ${cy}
+    Screen X/Y: ${sx}, ${sy}`;
 }
 	
 var canvas = document.getElementsByTagName("canvas")[0];
