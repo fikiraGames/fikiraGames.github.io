@@ -6,16 +6,19 @@
     <meta name="fikira" content="Games">
 </head>
 <body>
- <canvas id="canvas" width="800" height="800"> </canvas>
+
+ <canvas id="canvas" width="400" height="400" style="border:solid black 1px;">
+  You really badly need to use a different browser.
+ </canvas>
  <br>
-  Log: <pre id="log" style="border: 1px solid #ccc;"></pre>
  <button onclick="window.startup();">Initialize</button>
  <br>
-	
- <script>
+  Log: <pre id="log" style="border: 1px solid #ccc;"></pre>
+
+<script>
  
 function startup() {
-  var el =document.canvas;
+  var el =document.body;
   el.addEventListener("touchstart", handleStart, false);
   el.addEventListener("touchend", handleEnd, false);
   el.addEventListener("touchcancel", handleCancel, false);
@@ -23,9 +26,7 @@ function startup() {
   el.addEventListener("touchmove", handleMove, false);
   log("initialized.");
 }
-	 
 var ongoingTouches = new Array;
-	 
 function handleStart(evt) {
     
  
@@ -50,7 +51,6 @@ var offset = findPos(el);
   }
   }
 }
-	 
 function handleMove(evt) {
 
   var el = document.getElementsByTagName("canvas")[0];
@@ -83,8 +83,8 @@ function handleMove(evt) {
   }
         }
 }
-	 
 function handleEnd(evt) {
+
 //  log("touchend/touchleave.");
   var el = document.getElementsByTagName("canvas")[0];
   var ctx = el.getContext("2d");
@@ -111,7 +111,6 @@ function handleEnd(evt) {
   }
         }
 }
-
 function handleCancel(evt) {
   evt.preventDefault();
   log("touchcancel.");
@@ -121,7 +120,6 @@ function handleCancel(evt) {
     ongoingTouches.splice(i, 1); // remove it; we're done
   }
 }
-	 
 function colorForTouch(touch) {
   var r = touch.identifier % 16;
   var g = Math.floor(touch.identifier / 3) % 16;
@@ -133,11 +131,9 @@ function colorForTouch(touch) {
   log("color for touch with identifier " + touch.identifier + " = " + color);
   return color;
 }
-	 
 function copyTouch(touch) {
   return {identifier: touch.identifier,clientX: touch.clientX,clientY: touch.clientY};
 }
-	 
 function ongoingTouchIndexById(idToFind) {
   for (var i = 0; i < ongoingTouches.length; i++) {
     var id = ongoingTouches[i].identifier;
@@ -148,7 +144,6 @@ function ongoingTouchIndexById(idToFind) {
   }
   return -1; // not found
 }
-
 function log(msg) {
   var p = document.getElementById('log');
   p.innerHTML = msg + "\n" + p.innerHTML;
@@ -168,7 +163,7 @@ function findPos (obj) {
     }
 }
 
- </script>
+</script>
 
 </body>
 
