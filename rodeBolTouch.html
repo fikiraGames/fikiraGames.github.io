@@ -19,9 +19,24 @@
  <p id="screen-log"></p>
 	
 <script>
+
+/*
+var src = document.getElementById("source");
+var clientX, clientY;
+
+src.addEventListener('touchstart', function(e) {
+  // Cache the client X/Y coordinates
+  clientX = e.touches[0].clientX;
+  clientY = e.touches[0].clientY;
+}, false);
+*/	
 	
+	
+var canvas = document.getElementsByTagName("canvas")[0];
+var ctx = canvas.getContext("2d");
+
 let screenLog = document.querySelector('#screen-log');
-document.addEventListener('touchmove', logKey);
+canvas.addEventListener('touchmove', logKey);
 
 function logKey(e) {
   var cx = Math.round(e.touches[0].clientX*100)/100;
@@ -33,10 +48,7 @@ function logKey(e) {
     Client X/Y: ${cx}, ${cy}
     Screen X/Y: ${sx}, ${sy}`;
 }
-	
-var canvas = document.getElementsByTagName("canvas")[0];
-var ctx = canvas.getContext("2d");
-	
+
 canvas.addEventListener("touchstart",  function(event) {event.preventDefault()})
 canvas.addEventListener("touchmove",   function(event) {event.preventDefault()})
 //canvas.addEventListener("touchend",    function(event) {event.preventDefault()})
