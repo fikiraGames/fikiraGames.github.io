@@ -28,6 +28,13 @@ function logKey(e) {
     Canvas X/Y: ${e.screenX}, ${e.screenY}
     Client X/Y: ${e.clientX}, ${e.clientY}`;
 }
+	
+function startup() {
+  var el =document.body;
+  el.addEventListener("touchstart", handleStart, false);
+  el.addEventListener("touchmove", handleMove, false);
+  log("initialized.");
+}	
 function handleMove(event) {
   var canvas  = document.getElementsByTagName("canvas")[0];
   var ctx     = canvas.getContext("2d");
