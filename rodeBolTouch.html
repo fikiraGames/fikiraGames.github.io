@@ -48,19 +48,10 @@ function findPos (obj) {
 
         return { x: curleft-document.body.scrollLeft, y: curtop-document.body.scrollTop };
     }
-    log("x: " + Math.round(x * 100)/100 );
+    log("x: " + ${Math.round(x * 100)/100} );
     log("y: " + y);
 }	
 	
-let screenLog = document.querySelector('#screen-log');
-document.addEventListener('touchmove', logKey);
-      
-function logKey(e) {
-  screenLog.innerText = `
-    Canvas X/Y: ${e.screenX}, ${e.screenY}
-    Client X: ` + log(x);
-}
-
 var canvas = document.getElementsByTagName("canvas")[0];
 var ctx = canvas.getContext("2d");
 	
