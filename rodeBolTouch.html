@@ -16,13 +16,16 @@
  <button class="center"><a href="index.html">Home</a></button>
 
  <br>
-  Log: <pre id="log" style="border: 1px solid #ccc;"></pre>
+ <p id="screen-log"></p>
 	
-<script>	 
+<script>
+	
+let screenLog = document.querySelector('#screen-log');
+document.addEventListener('touchmove', logKey);
 
-function log(event) {
-  var p = document.getElementById('log');
-  p.innerHTML = "x: " + event.touches[0].clientX + "\n" + "y: " + event.touches[0].clientY;
+function logKey(e) {
+  screenLog.innerText = `
+    Client X/Y: ${e.touches[0].clientX}, ${e.touches[0].clientY}`;
 }
 	
 var canvas = document.getElementsByTagName("canvas")[0];
