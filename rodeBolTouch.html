@@ -16,7 +16,8 @@
  <button class="center"><a href="index.html">Home</a></button>
 
  <p id="screen-log"></p>
-	
+ <br>
+  Log: <pre id="log" style="border: 1px solid #ccc;"></pre>
  <script>	 
 	 
 let screenLog = document.querySelector('#screen-log');
@@ -28,8 +29,16 @@ function logKey(e) {
     Client X/Y: ${e.clientX}, ${e.clientY}`;
 }
  
-var canvas            = document.getElementById("myCanvas");
-var ctx               = canvas.getContext("2d");
+var canvas  = document.getElementsByTagName("Canvas")[0];
+var ctx     = canvas.getContext("2d");
+var touches = event.changedTouches;
+var offset  = findPos(canvas);
+for (var i = 0; i < touches.length; i++) {
+    if(touches[i].clientX-offset.x >0 && touches[i].clientX-offset.x < parseFloat(canvas.width) && touches[i].clientY-offset.y >0 && touches[i].clientY-offset.y < parseFloat(canvas.height)){
+            event.preventDefault();
+  var idx = ongoingTouchIndexById(touches[i].identifier);
+  log("ctx.moveTo(" + ongoingTouches[idx].clientX + ", " + ongoingTouches[idx].clientY + ");");
+  ctx.moveTo(ongoingTouches[idx].clientX-offset.x, ongoingTouches[idx].clientY-offset.y);
 
 canvas.addEventListener("touchstart",  function(event) {event.preventDefault()})
 canvas.addEventListener("touchmove",   function(event) {event.preventDefault()})
