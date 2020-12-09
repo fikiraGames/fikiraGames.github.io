@@ -51,14 +51,11 @@ function findPos (obj) {
     log("x: " + x);
     log("y: " + y);
 }	
-log("x: " + x);
-log("y: " + y);
 	
 let screenLog = document.querySelector('#screen-log');
 document.addEventListener('touchmove', logKey);
       
 function logKey(e) {
-  var offset = findPos(e);  
   screenLog.innerText = `
     Canvas X/Y: ${e.screenX}, ${e.screenY}
     Client X: ` + log(x);
