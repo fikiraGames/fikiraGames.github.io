@@ -25,7 +25,7 @@ document.addEventListener('touchmove', logKey);
 
 function logKey(e) {
   screenLog.innerText = `
-    Client X/Y: ${e.touches[0].clientX}, ${e.touches[0].clientY}`;
+    Client X/Y: ${Math.round(e.touches[0].clientX*100)/100}, ${e.touches[0].clientY}`;
 }
 	
 var canvas = document.getElementsByTagName("canvas")[0];
