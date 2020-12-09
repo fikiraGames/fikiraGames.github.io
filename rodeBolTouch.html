@@ -11,18 +11,18 @@
     -->
 </head>
 <body>
- <canvas ontouchstart="paint(event)" ontouchmove="paint(event)" id="myCanvas" width="800" height="800"> 
-   Your browser does not support canvas element.
- </canvas>
- <br>
- <button onclick="window.startup();">Initialize</button>
- <br>
-  Log: <pre id="log" style="border: 1px solid #ccc;"></pre>
+ <canvas ontouchstart="paint(event)" ontouchmove="paint(event)" id="myCanvas" width="800" height="800"> </canvas>
  <br>
  <button class="center"><a href="index.html">Home</a></button>
 
  <p id="screen-log"></p>
- 
+	
+ <canvas id="canvas" width="800" height="800"> </canvas>
+ <br>
+  Log: <pre id="log" style="border: 1px solid #ccc;"></pre>
+ <button onclick="window.startup();">Initialize</button>
+ <br>
+	
  <script>
  
 function startup() {
@@ -41,7 +41,7 @@ function handleStart(evt) {
     
  
 //  log("touchstart.");
-  var el = document.getElementsByTagName("mycanvas")[0];
+  var el = document.getElementsByTagName("canvas")[0];
   var ctx = el.getContext("2d");
   var touches = evt.changedTouches;
 var offset = findPos(el);  
@@ -64,7 +64,7 @@ var offset = findPos(el);
 	 
 function handleMove(evt) {
 
-  var el = document.getElementsByTagName("mycanvas")[0];
+  var el = document.getElementsByTagName("canvas")[0];
   var ctx = el.getContext("2d");
   var touches = evt.changedTouches;
   var offset = findPos(el);
@@ -97,7 +97,7 @@ function handleMove(evt) {
 	 
 function handleEnd(evt) {
 //  log("touchend/touchleave.");
-  var el = document.getElementsByTagName("mycanvas")[0];
+  var el = document.getElementsByTagName("canvas")[0];
   var ctx = el.getContext("2d");
   var touches = evt.changedTouches;
   var offset = findPos(el);
@@ -193,12 +193,12 @@ function logKey(e) {
  
 var canvas            = document.getElementById("myCanvas");
 var ctx               = canvas.getContext("2d");
-/*
+
 canvas.addEventListener("touchstart",  function(event) {event.preventDefault()})
 canvas.addEventListener("touchmove",   function(event) {event.preventDefault()})
 //canvas.addEventListener("touchend",    function(event) {event.preventDefault()})
 //canvas.addEventListener("touchcancel", function(event) {event.preventDefault()})
-*/
+
 var i 				  = 0;
 var ballRadius        = 100;
 var xBounce           = 50;
