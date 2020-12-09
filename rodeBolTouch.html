@@ -38,7 +38,6 @@ for (var i = 0; i < touches.length; i++) {
             event.preventDefault();
   var idx = ongoingTouchIndexById(touches[i].identifier);
   log("ctx.moveTo(" + ongoingTouches[idx].clientX + ", " + ongoingTouches[idx].clientY + ");");
-  ctx.moveTo(ongoingTouches[idx].clientX-offset.x, ongoingTouches[idx].clientY-offset.y);
 }
 
 canvas.addEventListener("touchstart",  function(event) {event.preventDefault()})
