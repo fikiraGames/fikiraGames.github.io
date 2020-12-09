@@ -62,15 +62,15 @@ function logKey(e) {
     Canvas X/Y: ${e.screenX}, ${e.screenY}
     Client X/Y: ${touches[0].clientX-offset.x}, ${touches[0].clientY-offset.y}`;
 }
+
+var canvas = document.getElementsByTagName("canvas")[0];
+var ctx = canvas.getContext("2d");
 	
-/*	
 canvas.addEventListener("touchstart",  function(event) {event.preventDefault()})
 canvas.addEventListener("touchmove",   function(event) {event.preventDefault()})
 //canvas.addEventListener("touchend",    function(event) {event.preventDefault()})
 //canvas.addEventListener("touchcancel", function(event) {event.preventDefault()})
-*/
-var canvas = document.getElementsByTagName("canvas")[0];
-var ctx = canvas.getContext("2d");	
+
 var i 				  = 0;
 var ballRadius        = 100;
 var xBounce           = 50;
