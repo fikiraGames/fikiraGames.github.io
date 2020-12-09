@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">    
+    <title>Fikira Games</title>
+    <meta name="fikira" content="Games">
+    <link rel="stylesheet" href="ballTargetCanvas.css">
+    <!--
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="jquery.js"></script>
+    -->
+</head>
+<body id="myBody">
+
+ <canvas ontouchstart="paint(event)" ontouchmove="paint(event)" id="myCanvas" width="800" height="800"> </canvas>
+ <br>
+ <button class="center"><a href="index.html">Home</a></button>
+
+ <p id="screen-log"></p>
+ 
+ <script>
+  
+let screenLog = document.querySelector('#screen-log');
+document.addEventListener('touchmove', logKey);
+
+function logKey(e) {
+  screenLog.innerText = `
+    Canvas X/Y: ${e.screenX}, ${e.screenY}
+    Client X/Y: ${e.clientX}, ${e.clientY}`;
+}
+ 
+var canvas            = document.getElementById("myCanvas");
+var ctx               = canvas.getContext("2d");
+
+canvas.addEventListener("touchstart",  function(event) {event.preventDefault()})
+canvas.addEventListener("touchmove",   function(event) {event.preventDefault()})
+//canvas.addEventListener("touchend",    function(event) {event.preventDefault()})
+//canvas.addEventListener("touchcancel", function(event) {event.preventDefault()})
+
+var i 				  = 0;
+var ballRadius        = 100;
+var xBounce           = 50;
+var yBounce           = 50;
+var x                 = canvas.width/2; 
+var y                 = canvas.height-ballRadius - 1;
+
+function drawBall(x, y, ballRadius, z, color) {
+  ctx.beginPath();
+  ctx.arc(x, y, ballRadius, z, Math.PI*2);
+  ctx.fillStyle = color;
+  ctx.fill();
+  ctx.closePath();
+}
+drawBall(       x ,        y ,  ballRadius,  0 , '#cf0c0c');
+
+function paint(event) {
+/*   x,  y = position middle of ball; cX, cY = "client" = mouse; px, py = position x, y + px  */
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  var cX = event.touches[0].clientX; 
+  var cY = event.touches[0].clientY;
+  var ballr3 = (ballRadius / 3);
+  var xEdgeL = x  - ballRadius <= 0            ;
+  var xEdgeR = x  + ballRadius >= canvas.width ;
+  var yEdgeT = y  - ballRadius <= 0            ;
+  var yEdgeB = y  + ballRadius >= canvas.height;
+
+  if (xEdgeL) {x += xBounce;}
+  else if (xEdgeR) {x -= xBounce;}
+  else if (yEdgeT) {y += yBounce;}
+  else if (yEdgeB) {y -= yBounce;}
+	  
+  else {
+      var i;
+      for (i = 0; i < ballRadius; i++) {
+        var j = Math.round(Math.sqrt(Math.pow(ballRadius, 2) - Math.pow(i, 2)));
+        if      (cX > x-i && cX < x) {
+          if      (cY > y-j && cY < y) {x += i/ballr3; y += j/ballr3;}
+          else if (cY < y+j && cY > y) {x += i/ballr3; y -= j/ballr3;}
+        }
+        else if (cX < x+i && cX > x) {
+          if      (cY > y-j && cY < y) {x -= i/ballr3; y += j/ballr3;}
+          else if (cY < y+j && cY > y) {x -= i/ballr3; y -= j/ballr3;}
+        }
+      }
+  };
+    
+  drawBall(       x ,        y ,  ballRadius,  0 , '#cf0c0c');
+
+};
+
+ </script>
+
+</body>
+
+</html>
