@@ -44,7 +44,7 @@ function handleMove(event) {
               event.preventDefault();
     var idx = ongoingTouchIndexById(touches[i].identifier);
     log("ctx.moveTo(" + ongoingTouches[idx].clientX + ", " + ongoingTouches[idx].clientY + ");");
-    }
+  }
 }
 function log(msg) {
   var p = document.getElementById('log');
