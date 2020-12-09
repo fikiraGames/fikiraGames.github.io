@@ -28,19 +28,23 @@ function logKey(e) {
     Canvas X/Y: ${e.screenX}, ${e.screenY}
     Client X/Y: ${e.clientX}, ${e.clientY}`;
 }
- 
-var canvas  = document.getElementsByTagName("canvas")[0];
-var ctx     = canvas.getContext("2d");
-var touches = event.changedTouches;
-var offset  = findPos(canvas);
-for (var i = 0; i < touches.length; i++) {
-    if(touches[i].clientX-offset.x >0 && touches[i].clientX-offset.x < parseFloat(canvas.width) && touches[i].clientY-offset.y >0 && touches[i].clientY-offset.y < parseFloat(canvas.height)){
-            event.preventDefault();
-  var idx = ongoingTouchIndexById(touches[i].identifier);
-  log("ctx.moveTo(" + ongoingTouches[idx].clientX + ", " + ongoingTouches[idx].clientY + ");");
-  }
+function handleMove(event) {
+  var canvas  = document.getElementsByTagName("canvas")[0];
+  var ctx     = canvas.getContext("2d");
+  var touches = event.changedTouches;
+  var offset  = findPos(canvas);
+  for (var i = 0; i < touches.length; i++) {
+      if(touches[i].clientX-offset.x >0 && touches[i].clientX-offset.x < parseFloat(canvas.width) && touches[i].clientY-offset.y >0 && touches[i].clientY-offset.y < parseFloat(canvas.height)){
+              event.preventDefault();
+    var idx = ongoingTouchIndexById(touches[i].identifier);
+    log("ctx.moveTo(" + ongoingTouches[idx].clientX + ", " + ongoingTouches[idx].clientY + ");");
+    }
 }
-
+function log(msg) {
+  var p = document.getElementById('log');
+  p.innerHTML = msg + "\n" + p.innerHTML;
+}
+	
 canvas.addEventListener("touchstart",  function(event) {event.preventDefault()})
 canvas.addEventListener("touchmove",   function(event) {event.preventDefault()})
 //canvas.addEventListener("touchend",    function(event) {event.preventDefault()})
