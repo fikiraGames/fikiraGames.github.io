@@ -37,14 +37,14 @@
  
 var canvas     = document.getElementById("myCanvas");
 var ctx        = canvas.getContext("2d")            ;
+var canvasW    = canvas.width		            ;
+var canvasH    = canvas.height		            ;
+
 var windowW    = window.innerWidth                  ;
 var offset     = (windowW - canvasW) / 2            ;  
 
 canvas.width   = 800           		     	    ;
 canvas.height  = 800            		    ;
-
-var canvasW    = canvas.width		            ;
-var canvasH    = canvas.height		            ;
  
 canvas.addEventListener("touchstart", function(event) {event.preventDefault()})
 canvas.addEventListener("touchmove" , function(event) {event.preventDefault()})
@@ -63,10 +63,6 @@ var xBounce    = ballRadius /  2	 ;
 var yBounce    = ballRadius /  2         ;
 var x          = canvasW    /  2   	 ; 
 var y          = canvasH - ballRadius - 1;
-/*
-var x          = ballRadius * 20.0; 
-var y          = ballRadius * 24 - 1;
-*/
 
 var a = 2 * (Math.sqrt( Math.pow( (ballRadius + spinR1) * 1.03, 2) / 2));
 
