@@ -37,11 +37,11 @@
  
 var canvas     = document.getElementById("myCanvas");
 var ctx        = canvas.getContext("2d")            ;
-canvas.width   = 800				    ;
-//canvas.height  = 800				    ;
+canvas.width   = 1200				    ;
+canvas.height  = 1200				    ;
 var canvasW    = canvas.width		            ;
-var canvasH    = canvas.width		            ;
-
+var canvasH    = canvas.height		            ;
+ 
 canvas.addEventListener("touchstart", function(event) {event.preventDefault()})
 canvas.addEventListener("touchmove" , function(event) {event.preventDefault()})
 
@@ -225,10 +225,6 @@ drawRect(23*ballRadius, 	   0,            h, 2*ballRadius, '#FFFF00');
 // ------------------------------------------------------------------------------------------------------------------------ //
 
 function paint(event) {
-  var canvas  =  document.getElementById("myCanvas");
-  var ctx     =  canvas.getContext("2d")	    ;
-  var canvasW =  canvas.width			    ;
-  var canvasH =  canvas.height			    ;
   var windowW =  window.innerWidth                  ;
   var offset  = (windowW - canvasW) / 2             ;  
   var cX      = event.touches[0].pageX - offset     ; 
