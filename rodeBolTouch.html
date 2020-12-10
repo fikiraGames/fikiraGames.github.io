@@ -81,8 +81,8 @@ function paint(event) {
   var ctx         = canvas.getContext("2d");
   var windowWidth = window.innerWidth
   var offset = (windowWidth - canvas.width) / 2;  
-  var cX = event.touches[0].clientX - offset; 
-  var cY = event.touches[0].clientY;
+  var cX = event.touches[0].pageX - offset; 
+  var cY = event.touches[0].pageY;
 /*   x,  y = position middle of ball; cX, cY = "client" = mouse; px, py = position x, y + px  */
   var ballr3 = (ballRadius / 3);
   var xEdgeL = x  - ballRadius <= 0            ;
