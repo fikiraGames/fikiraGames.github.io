@@ -32,43 +32,47 @@ src.addEventListener('touchstart', function(e) {
 */	
 	
 	
-var canvas = document.getElementById("myCanvas");
-var ctx = canvas.getContext("2d");
+var canvas    = document.getElementById("myCanvas")     ;
+var ctx       = canvas.getContext("2d")		        ;
+var canvasW   = canvas.width			        ;
+var canvasH   = canvas.height			        ;
 
-let screenLog = document.querySelector('#screen-log');
-canvas.addEventListener('touchmove', logKey);
+let screenLog = document.querySelector('#screen-log')   ;
+	
+canvas.addEventListener('touchmove', logKey)            ;
 
 function logKey(e) {
-  var cx = Math.round(e.touches[0].clientX*100)/100;
-  var cy = Math.round(e.touches[0].clientY*100)/100;
-  var px = Math.round(e.touches[0].pageX*100)/100;
-  var py = Math.round(e.touches[0].pageY*100)/100;
-  var sx = Math.round(e.touches[0].screenX*100)/100;
-  var sy = Math.round(e.touches[0].screenY*100)/100;
+  var canvasW = canvas.width;
+  var cx      = Math.round(e.touches[0].clientX*100)/100;
+  var cy      = Math.round(e.touches[0].clientY*100)/100;
+  var px      = Math.round(e.touches[0].pageX  *100)/100;
+  var py      = Math.round(e.touches[0].pageY  *100)/100;
+  var sx      = Math.round(e.touches[0].screenX*100)/100;
+  var sy      = Math.round(e.touches[0].screenY*100)/100;
   //  var bodyWidth = document.body.clientWidth;
-  var windowWidth = window.innerWidth
-  var windowHeight = window.innerHeight
-  var offset = (windowWidth - canvas.width) / 2;
+  var windowW = window.innerWidth
+  var windowH = window.innerHeight
+  var offset = (windowW - canvasW) / 2;
   screenLog.innerText = `
     Client X/Y: ${cx}, ${cy}
     Page X/Y: ${px}, ${py}
     Screen X/Y: ${sx}, ${sy}
-    window Width: ${windowWidth}
-    window Height: ${windowHeight}
+    window Width: ${windowW}
+    window Height: ${windowH}
     offset: ${offset}`;
-}
+};
 
-canvas.addEventListener("touchstart",  function(event) {event.preventDefault()})
-canvas.addEventListener("touchmove",   function(event) {event.preventDefault()})
+canvas.addEventListener("touchstart", function(event) {event.preventDefault()})
+canvas.addEventListener("touchmove" , function(event) {event.preventDefault()})
 //canvas.addEventListener("touchend",    function(event) {event.preventDefault()})
 //canvas.addEventListener("touchcancel", function(event) {event.preventDefault()})
 
-var i 				  = 0;
-var ballRadius        = 100;
-var xBounce           = 50;
-var yBounce           = 50;
-var x                 = canvas.width/2; 
-var y                 = canvas.height-ballRadius - 1;
+var i 		      = 0			;
+var ballRadius        = canvasW * 0.08		;
+var xBounce           = canvasW * 0.04		;
+var yBounce           = canvasW * 0.04		;
+var x                 = canvasW / 2   		; 
+var y                 = canvasH - ballRadius - 1;
 
 function drawBall(x, y, ballRadius, z, color) {
   ctx.beginPath();
@@ -76,25 +80,28 @@ function drawBall(x, y, ballRadius, z, color) {
   ctx.fillStyle = color;
   ctx.fill();
   ctx.closePath();
-}
-drawBall(       x ,        y ,  ballRadius,  0 , '#cf0c0c');
+};
+	
+drawBall(x, y, ballRadius, 0, '#cf0c0c');
 
 function paint(event) {
-  var canvas      = document.getElementById("myCanvas");
-  var ctx         = canvas.getContext("2d");
-  var windowWidth = window.innerWidth
-  var offset = (windowWidth - canvas.width) / 2;  
-  var cX = event.touches[0].pageX - offset; 
-  var cY = event.touches[0].pageY;
+  var canvas  =  document.getElementById("myCanvas");
+  var ctx     =  canvas.getContext("2d")            ;
+  var canvasW =  canvas.width			    ;
+  var canvasH =  canvas.height	                    ;
+  var windowW =  window.innerWidth                  ;
+  var offset  = (windowW - canvasW) / 2		    ;  
+  var cX      =  event.touches[0].pageX - offset    ; 
+  var cY      =  event.touches[0].pageY		    ;
 /*   x,  y = position middle of ball; cX, cY = "client" = mouse; px, py = position x, y + px  */
-  var ballr3 = (ballRadius / 3);
-  var xEdgeL = x  - ballRadius <= 0            ;
-  var xEdgeR = x  + ballRadius >= canvas.width ;
-  var yEdgeT = y  - ballRadius <= 0            ;
-  var yEdgeB = y  + ballRadius >= canvas.height;
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  var ballr3  = (ballRadius / 3)                    ;
+  var xEdgeL  =  x - ballRadius <= 0                ;
+  var xEdgeR  =  x + ballRadius >= canvasW          ;
+  var yEdgeT  =  y - ballRadius <= 0                ; 
+  var yEdgeB  =  y + ballRadius >= canvasH	    ;
+  ctx.clearRect(0, 0, canvasW, canvasH)		    ;
 
-  if (xEdgeL) {x += xBounce;}
+  if      (xEdgeL) {x += xBounce;}
   else if (xEdgeR) {x -= xBounce;}
   else if (yEdgeT) {y += yBounce;}
   else if (yEdgeB) {y -= yBounce;}
@@ -103,18 +110,18 @@ function paint(event) {
       var i;
       for (i = 0; i < ballRadius; i++) {
         var j = Math.round(Math.sqrt(Math.pow(ballRadius, 2) - Math.pow(i, 2)));
-        if      (cX <= x && cX >= x-i) {
+        if        (cX <= x && cX >= x-i) {
           if      (cY <= y && cY >= y-j) {x += i/ballr3; y += j/ballr3;}
           else if (cY >  y && cY <= y+j) {x += i/ballr3; y -= j/ballr3;}
         }
-        else if (cX > x && cX <= x+i) {
+        else if   (cX > x && cX <= x+i) {
           if      (cY <= y && cY >= y-j) {x -= i/ballr3; y += j/ballr3;}
           else if (cY >  y && cY <  y+j) {x -= i/ballr3; y -= j/ballr3;}
         }
       }
   };
     
-  drawBall(       x ,        y ,  ballRadius,  0 , '#cf0c0c');
+  drawBall(x, y, ballRadius, 0, '#cf0c0c');
 
 };
 
