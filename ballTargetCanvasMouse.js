@@ -40,11 +40,6 @@ var body              = document.getElementById("myBody");
 var ctx               = canvas.getContext("2d");
 var i 				  = 0;
 
-//body.clientWidth
-
-var bodyW = body.clientWidth * 1;
-var bodyH = body.clientHeight * 1;
-
 /*
 function resizeCanvasToDisplaySize(canvas) {
    // look up the size the canvas is being displayed
