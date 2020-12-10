@@ -37,10 +37,10 @@
  
 var canvas     = document.getElementById("myCanvas");
 var ctx        = canvas.getContext("2d")            ;
-canvas.width   = 800				    ;
-canvas.height  = 800				    ;
+canvas.width   = 1000				    ;
+//canvas.height  = 800				    ;
 var canvasW    = canvas.width		            ;
-var canvasH    = canvas.height		            ;
+var canvasH    = canvas.width		            ;
 
 canvas.addEventListener("touchstart", function(event) {event.preventDefault()})
 canvas.addEventListener("touchmove" , function(event) {event.preventDefault()})
@@ -50,14 +50,14 @@ canvas.addEventListener("touchmove" , function(event) {event.preventDefault()})
 // circles
 
 var i          = 0			 ;
-var ballRadius = canvasW * 0.08  	 ;
+var ballRadius = canvasW * 0.04  	 ;
 var blRdRandom = ballRadius /  6.4	 ;
 var spinRadius = ballRadius * 10.0	 ;
 var spinRSmall = ballRadius *  6.5	 ;
 var spinR1     = ballRadius /  6  	 ;
-var xBounce    = canvasW * 0.04		 ;
-var yBounce    = canvasW * 0.04	         ;
-var x          = canvasW / 2   		 ; 
+var xBounce    = ballRadius /  2	 ;
+var yBounce    = ballRadius /  2         ;
+var x          = canvasW    /  2   	 ; 
 var y          = canvasH - ballRadius - 1;
 /*
 var x          = ballRadius * 20.0; 
