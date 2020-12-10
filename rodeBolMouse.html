@@ -24,12 +24,12 @@ let screenLog = document.querySelector('#screen-log');
 document.addEventListener('mousemove', logKey);
 
 function logKey(e) {
-  var cx = Math.round(e.touches[0].clientX*100)/100;
-  var cy = Math.round(e.touches[0].clientY*100)/100;
-  var px = Math.round(e.touches[0].pageX*100)/100;
-  var py = Math.round(e.touches[0].pageY*100)/100;
-  var sx = Math.round(e.touches[0].screenX*100)/100;
-  var sy = Math.round(e.touches[0].screenY*100)/100;
+  var cx = Math.round(e.clientX*100)/100;
+  var cy = Math.round(e.clientY*100)/100;
+  var px = Math.round(e.pageX*100)/100;
+  var py = Math.round(e.pageY*100)/100;
+  var sx = Math.round(e.screenX*100)/100;
+  var sy = Math.round(e.screenY*100)/100;
   //  var bodyWidth = document.body.clientWidth;
   var windowWidth = window.innerWidth
   var windowHeight = window.innerHeight
