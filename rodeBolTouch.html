@@ -107,14 +107,14 @@ function paint(event) {
   else if (yEdgeB) {y -= yBounce;}
 	  
   else {
-      var i;
-      for (i = 0; i < ballRadius; i++) {
-        var j = Math.round(Math.sqrt(Math.pow(ballRadius, 2) - Math.pow(i, 2)));
+      var   i;
+      for  (i = 0; i < ballRadius; i++)  {
+        var j = Math.sqrt(Math.pow(ballRadius, 2) - Math.pow(i, 2));
         if        (cX <= x && cX >= x-i) {
           if      (cY <= y && cY >= y-j) {x += i/ballr3; y += j/ballr3;}
           else if (cY >  y && cY <= y+j) {x += i/ballr3; y -= j/ballr3;}
         }
-        else if   (cX > x && cX <= x+i) {
+        else if   (cX >  x && cX <= x+i) {
           if      (cY <= y && cY >= y-j) {x -= i/ballr3; y += j/ballr3;}
           else if (cY >  y && cY <  y+j) {x -= i/ballr3; y -= j/ballr3;}
         }
