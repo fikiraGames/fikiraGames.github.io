@@ -30,56 +30,43 @@
 //									    O <- x,y,ballRadius    
 //---------------------------------------------------------------------------
 
-// https://developer.mozilla.org/en-US/docs/Games/Tutorials/2D_Breakout_game_pure_JavaScript/Paddle_and_keyboard_controls
-var canvas            = document.getElementById("myCanvas");
-canvas.addEventListener("touchstart",  function(event) {event.preventDefault()})
-canvas.addEventListener("touchmove",   function(event) {event.preventDefault()})
-//canvas.addEventListener("touchend",    function(event) {event.preventDefault()})
-//canvas.addEventListener("touchcancel", function(event) {event.preventDefault()})
+// https://stackoverflow.com/questions/38634654/why-does-the-clientx-and-y-change-on-scroll
+// https://developer.mozilla.org/en-US/docs/Games/Tutorials/2D_Breakout_game_pure_JavaScript/Bounce_off_the_walls
+// https://spicyyoghurt.com/tutorials/html5-javascript-game-development/collision-detection-physics
+// https://stackoverflow.com/questions/1664785/resize-html5-canvas-to-fit-window
+ 
+var canvas    = document.getElementById("myCanvas");
+var ctx       = canvas.getContext("2d")     	   ;
+var canvasW   = canvas.width			   ;
+var canvasH   = canvas.height			   ;
 
-var body              = document.getElementById("myBody");
+canvas.addEventListener("touchstart", function(event) {event.preventDefault()})
+canvas.addEventListener("touchmove" , function(event) {event.preventDefault()})
 
-var ctx               = canvas.getContext("2d");
-var i 				  = 0;
-/*
-let width = document.querySelector('#width');
-width.innerText = "canvas width = " + canvas.clientWidth + ", " + "body width = " + body.clientWidth + ", " + "body height = " + body.clientHeight;
-*/
 // ------------------------------------------------------------------------------------------------------------------------ //
 // variables
-
 // circles
 
-// canvas.heigth = 800 -> ballRadius = 800 * 0.04 = 32
-var ballRadius = canvas.height * 0.04;
-
-var blRdRandom = ballRadius /  6.4;
-
-var spinRadius = ballRadius * 10.0;
-var spinRSmall = ballRadius *  6.5;
-
-var spinR1     = ballRadius /  6  ;
-
-// ball x
+var i          = 0			 ;
+var ballRadius = canvasW * 0.08  	 ;
+var blRdRandom = ballRadius /  6.4	 ;
+var spinRadius = ballRadius * 10.0	 ;
+var spinRSmall = ballRadius *  6.5	 ;
+var spinR1     = ballRadius /  6  	 ;
+var xBounce    = canvasW * 0.04		 ;
+var yBounce    = canvasW * 0.04	         ;
+var x          = canvasW / 2   		 ; 
+var y          = canvasH - ballRadius - 1;
+/*
 var x          = ballRadius * 20.0; 
 var y          = ballRadius * 24 - 1;
-//var y          = ballRadius * 8 - ballRadius - 1;
-
-/*
-let screenLog  = document.querySelector('#screen-log');
-document.addEventListener('mousemove', logKey);
-function logKey(e) {
-  screenLog.innerText = `
-    Canvas X/Y: ${e.screenX}, ${e.screenY}
-    Client X/Y: ${e.clientX}, ${e.clientY}` + ' bodyW ' + bodyW + ' bodyH ' + bodyH;
-}
 */
 
-var a = Math.round(2 * (Math.sqrt( Math.pow( (ballRadius + spinR1) * 1.03, 2) / 2)));
+var a = 2 * (Math.sqrt( Math.pow( (ballRadius + spinR1) * 1.03, 2) / 2));
 
 
 // random ball x
-var randomX2  = 7.7*a; var randomY2  = ballRadius *   20.0;
+var randomX2  = 7.7*a; var randomY2  = ballRadius *   20.00;
 var randomX3  = 1.5*a; var randomY3  = ballRadius *   17.55;
 
 var randomX4  = 4*a  ; var randomY4  = 7.5*a ;
@@ -100,35 +87,35 @@ spinRSmall = ballRadius *  6.5;
 */
 
 // .   .   .   .   .   . 
-var partSpinR = spinRadius / 5;
+var partSpinR     = spinRadius / 5;
 
-var sX0 	  = partSpinR*0;
-var sX1 	  = partSpinR*1;
-var sX2 	  = partSpinR*2;
-var sX3 	  = partSpinR*3; // reset x
-var sX4 	  = partSpinR*4;
-var sX5 	  = partSpinR*5;
+var sX0 	  = partSpinR * 0 ;
+var sX1 	  = partSpinR * 1 ;
+var sX2 	  = partSpinR * 2 ;
+var sX3 	  = partSpinR * 3 ; // reset x
+var sX4 	  = partSpinR * 4 ;
+var sX5 	  = partSpinR * 5 ; 
 
-var partSpinS = spinRSmall / 4;
+var partSpinS     = spinRSmall / 4;
 
-var sYa 	  = partSpinS*4;
-var sYb 	  = partSpinS*3; // reset x
-var sYc 	  = partSpinS*2;
-var sYd 	  = partSpinS*1;
-var sYe 	  = partSpinS*0;
+var sYa 	  = partSpinS * 4 ; 
+var sYb 	  = partSpinS * 3 ; // reset x
+var sYc 	  = partSpinS * 2 ;
+var sYd 	  = partSpinS * 1 ;
+var sYe 	  = partSpinS * 0 ;
 
 // walls
-var h  = ballRadius/10;
+var h             = ballRadius /10;
 
 // horizontal walls
 var a1 = ballRadius *  6.0; var b1 = ballRadius * 22.5; var w1 = ballRadius *  9.5;
-var a2 = 0    			  ; var b2 = ballRadius * 20.0; var w2 = ballRadius * 12.5;
-var a3 = ballRadius *  3.0; var b3 = ballRadius * 17.5; var w3 = canvas.width - a3;
+var a2 = 0    	          ; var b2 = ballRadius * 20.0; var w2 = ballRadius * 12.5;
+var a3 = ballRadius *  3.0; var b3 = ballRadius * 17.5; var w3 = canvasW    -   a3;
 var a4 = 0                ; var b4 = ballRadius * 15.0; var w4 = ballRadius *  6.5;
 var a5 = ballRadius *  5.0; var b5 = ballRadius * 11.5; var w5 = ballRadius *  4.3;
-var a6 = 0				  ; var b6 = ballRadius *  7.0; var w6 = ballRadius *  6.5; // hardbounce
+var a6 = 0		  ; var b6 = ballRadius *  7.0; var w6 = ballRadius *  6.5; // hardbounce
 var a7 = ballRadius *  5.0; var b7 = ballRadius *  4.5; var w7 = ballRadius *  4.3;
-var a8 = 0				  ; var b8 = ballRadius *  2.0; var w8 = ballRadius *  6.5;
+var a8 = 0		  ; var b8 = ballRadius *  2.0; var w8 = ballRadius *  6.5;
 
 // vertical walls
 var a9 = ballRadius *  9.2; var b9 = ballRadius *  2.4; var w9 = ballRadius * 15.2;
@@ -165,8 +152,8 @@ function wall(a, b, w, h, ballRadius, wBounce) {
   if (x >= a && x <= a+w && y >= b-ballRadius   && y <= b  ) {y -= wBounce;}  // egdeWall1T
   if (y >= b && y <= b+h && x >= a-ballRadius   && x <= a  ) {x -= wBounce;}  // egdeWall1L
   if (y >= b && y <= b+h && x <= a+w+ballRadius && x >= a+w) {x += wBounce;}  // egdeWall1R
-  for (i = 0; i < ballRadius; i++) {
-    var j = Math.round(Math.sqrt(Math.pow(ballRadius, 2) - Math.pow(i, 2)));
+  for ( i = 0; i < ballRadius; i++) {
+    var j = Math.sqrt(Math.pow(ballRadius, 2) - Math.pow(i, 2));
     if (x < a   && x >= a-i   && y > b+h && y <= b+h+j) {y += wBounce; x -= wBounce;} // egdeWall1BL
     if (x > a+w && x <= a+w+i && y > b+h && y <= b+h+j) {y += wBounce; x += wBounce;} // egdeWall1BR
     if (x < a   && x >= a-i   && y < b   && y >= b-j  ) {y -= wBounce; x -= wBounce;} // egdeWall1TL
@@ -196,18 +183,18 @@ drawBall(randomX10, randomY10,  blRdRandom,  0, '#9219c2');
 
 drawBall(resetX9  , resetY9  ,  blRdRandom,  0, '#abf5f5');
 
-drawBall(25*ballRadius - sX0, Math.round(Math.sqrt(Math.pow(spinRadius, 2) - Math.pow(sX0, 2))), spinR1, 0, '#9219c2');
-drawBall(25*ballRadius - sX1, Math.round(Math.sqrt(Math.pow(spinRadius, 2) - Math.pow(sX1, 2))), spinR1, 0, '#9219c2');
-drawBall(25*ballRadius - sX2, Math.round(Math.sqrt(Math.pow(spinRadius, 2) - Math.pow(sX2, 2))), spinR1, 0, '#9219c2');
-drawBall(25*ballRadius - sX3, Math.round(Math.sqrt(Math.pow(spinRadius, 2) - Math.pow(sX3, 2))), spinR1, 0, '#abf5f5');
-drawBall(25*ballRadius - sX4, Math.round(Math.sqrt(Math.pow(spinRadius, 2) - Math.pow(sX4, 2))), spinR1, 0, '#9219c2');
-drawBall(25*ballRadius - sX5, Math.round(Math.sqrt(Math.pow(spinRadius, 2) - Math.pow(sX5, 2))), spinR1, 0, '#9219c2');
+drawBall(25*ballRadius - sX0, Math.sqrt(Math.pow(spinRadius, 2) - Math.pow(sX0, 2)), spinR1, 0, '#9219c2');
+drawBall(25*ballRadius - sX1, Math.sqrt(Math.pow(spinRadius, 2) - Math.pow(sX1, 2)), spinR1, 0, '#9219c2');
+drawBall(25*ballRadius - sX2, Math.sqrt(Math.pow(spinRadius, 2) - Math.pow(sX2, 2)), spinR1, 0, '#9219c2');
+drawBall(25*ballRadius - sX3, Math.sqrt(Math.pow(spinRadius, 2) - Math.pow(sX3, 2)), spinR1, 0, '#abf5f5');
+drawBall(25*ballRadius - sX4, Math.sqrt(Math.pow(spinRadius, 2) - Math.pow(sX4, 2)), spinR1, 0, '#9219c2');
+drawBall(25*ballRadius - sX5, Math.sqrt(Math.pow(spinRadius, 2) - Math.pow(sX5, 2)), spinR1, 0, '#9219c2');
 
-drawBall(25*ballRadius - Math.round(Math.sqrt(Math.pow(spinRSmall, 2) - Math.pow(sYa, 2))), sYa, spinR1, 0, '#9219c2');
-drawBall(25*ballRadius - Math.round(Math.sqrt(Math.pow(spinRSmall, 2) - Math.pow(sYb, 2))), sYb, spinR1, 0, '#abf5f5');
-drawBall(25*ballRadius - Math.round(Math.sqrt(Math.pow(spinRSmall, 2) - Math.pow(sYc, 2))), sYc, spinR1, 0, '#9219c2');
-drawBall(25*ballRadius - Math.round(Math.sqrt(Math.pow(spinRSmall, 2) - Math.pow(sYd, 2))), sYd, spinR1, 0, '#9219c2');
-drawBall(25*ballRadius - Math.round(Math.sqrt(Math.pow(spinRSmall, 2) - Math.pow(sYe, 2))), sYe, spinR1, 0, '#9219c2');
+drawBall(25*ballRadius - Math.sqrt(Math.pow(spinRSmall, 2) - Math.pow(sYa, 2)), sYa, spinR1, 0, '#9219c2');
+drawBall(25*ballRadius - Math.sqrt(Math.pow(spinRSmall, 2) - Math.pow(sYb, 2)), sYb, spinR1, 0, '#abf5f5');
+drawBall(25*ballRadius - Math.sqrt(Math.pow(spinRSmall, 2) - Math.pow(sYc, 2)), sYc, spinR1, 0, '#9219c2');
+drawBall(25*ballRadius - Math.sqrt(Math.pow(spinRSmall, 2) - Math.pow(sYd, 2)), sYd, spinR1, 0, '#9219c2');
+drawBall(25*ballRadius - Math.sqrt(Math.pow(spinRSmall, 2) - Math.pow(sYe, 2)), sYe, spinR1, 0, '#9219c2');
 
 // walls
 
@@ -229,44 +216,46 @@ drawRect(a12, b12, h ,  w12, '#FFFF00');
 
 // end game box
 drawRect(23*ballRadius, 2*ballRadius, 3*ballRadius,            h, '#FFFF00');
-drawRect(23*ballRadius,            0,            h, 2*ballRadius, '#FFFF00');
+drawRect(23*ballRadius, 	   0,            h, 2*ballRadius, '#FFFF00');
 
 // ------------------------------------------------------------------------------------------------------------------------ //
 // ------------------------------------------------------------------------------------------------------------------------ //
 // ------------------------------------------------------------------------------------------------------------------------ //
 
 function paint(event) {
-  var canvas      = document.getElementById("myCanvas");
-  var ctx         = canvas.getContext("2d");
-  var windowWidth = window.innerWidth
-  var offset = (windowWidth - canvas.width) / 2;  
-  var cX = event.touches[0].pageX - offset; 
-  var cY = event.touches[0].pageY;
+  var canvas  =  document.getElementById("myCanvas");
+  var ctx     =  canvas.getContext("2d")	    ;
+  var canvasW =  canvas.width			    ;
+  var canvasH =  canvas.height			    ;
+  var windowW =  window.innerWidth                  ;
+  var offset  = (windowWidth - canvasW) / 2         ;  
+  var cX      = event.touches[0].pageX - offset     ; 
+  var cY      = event.touches[0].pageY		    ;
 /*   x,  y = position middle of ball; cX, cY = "client" = mouse; px, py = position x, y + px  */
-  var ballr3 = (ballRadius / 3);
-  var xEdgeL = x  - ballRadius <= 0            ;
-  var xEdgeR = x  + ballRadius >= canvas.width ;
-  var yEdgeT = y  - ballRadius <= 0            ;
-  var yEdgeB = y  + ballRadius >= canvas.height;
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  var ballr3 = (ballRadius / 3)			    ;
+  var xEdgeL =  x - ballRadius <= 0                 ;
+  var xEdgeR =  x + ballRadius >= canvasW           ;
+  var yEdgeT =  y - ballRadius <= 0                 ;
+  var yEdgeB =  y + ballRadius >= canvasH           ;
+  ctx.clearRect(0, 0, canvasW, canvasH)             ;
 /* for mouse devices (laptop, desktop,...)
   var cX = event.clientX - offset; 
   var cY = event.clientY;
 */	
   // if ball against wall (B,T,L,R) (except ballradius space from both edges)
-  wall(a1 , b1 , w1, h  , ballRadius, wBounce);
-  wall(a2 , b2 , w2, h  , ballRadius, wBounce);
-  wall(a3 , b3 , w3, h  , ballRadius, wBounce);
-  wall(a4 , b4 , w4, h  , ballRadius, wBounce);
-  wall(a5 , b5 , w5, h  , ballRadius, wBounce);
+  wall(a1 , b1 , w1, h  , ballRadius, wBounce)   ;
+  wall(a2 , b2 , w2, h  , ballRadius, wBounce)	 ;
+  wall(a3 , b3 , w3, h  , ballRadius, wBounce)	 ;
+  wall(a4 , b4 , w4, h  , ballRadius, wBounce)	 ;
+  wall(a5 , b5 , w5, h  , ballRadius, wBounce)   ;
   wall(a6 , b6 , w6, h  , ballRadius, hardBounce);
-  wall(a7 , b7 , w7, h  , ballRadius, wBounce); 
-  wall(a8 , b8 , w8, h  , ballRadius, wBounce);
+  wall(a7 , b7 , w7, h  , ballRadius, wBounce)	 ; 
+  wall(a8 , b8 , w8, h  , ballRadius, wBounce)	 ;
   
-  wall(a9 , b9 , h , w9 , ballRadius, wBounce);
-  wall(a10, b10, h , w10, ballRadius, wBounce);
-  wall(a11, b11, h , w11, ballRadius, wBounce);
-  wall(a12, b12, h , w12, ballRadius, wBounce);
+  wall(a9 , b9 , h , w9 , ballRadius, wBounce)	 ;
+  wall(a10, b10, h , w10, ballRadius, wBounce)	 ;
+  wall(a11, b11, h , w11, ballRadius, wBounce)	 ;
+  wall(a12, b12, h , w12, ballRadius, wBounce)	 ;
 
   var rdm    = Math.round(Math.random() * 10);
   var rdm2   = Math.round(Math.random() * 10);
@@ -282,20 +271,20 @@ function paint(event) {
   var inter9 = circleIntersect(x, y, ballRadius, randomX9 , randomY9 , blRdRandom);
   var inter10= circleIntersect(x, y, ballRadius, randomX10, randomY10, blRdRandom);
 
-  var inRes1 = circleIntersect(x, y, ballRadius, resetX9 , resetY9 , blRdRandom);
+  var inRes1 = circleIntersect(x, y, ballRadius, resetX9  , resetY9  , blRdRandom);
 
-  var spin0 = circleIntersect(x, y, ballRadius, 25*ballRadius - sX0, Math.round(Math.sqrt(Math.pow(spinRadius, 2) - Math.pow(sX0, 2))) , spinR1);
-  var spin1 = circleIntersect(x, y, ballRadius, 25*ballRadius - sX1, Math.round(Math.sqrt(Math.pow(spinRadius, 2) - Math.pow(sX1, 2))) , spinR1);
-  var spin2 = circleIntersect(x, y, ballRadius, 25*ballRadius - sX2, Math.round(Math.sqrt(Math.pow(spinRadius, 2) - Math.pow(sX2, 2))) , spinR1);
-  var spin3 = circleIntersect(x, y, ballRadius, 25*ballRadius - sX3, Math.round(Math.sqrt(Math.pow(spinRadius, 2) - Math.pow(sX3, 2))) , spinR1);
-  var spin4 = circleIntersect(x, y, ballRadius, 25*ballRadius - sX4, Math.round(Math.sqrt(Math.pow(spinRadius, 2) - Math.pow(sX4, 2))) , spinR1);
-  var spin5 = circleIntersect(x, y, ballRadius, 25*ballRadius - sX5, Math.round(Math.sqrt(Math.pow(spinRadius, 2) - Math.pow(sX5, 2))) , spinR1);
+  var spin0 = circleIntersect(x, y, ballRadius, 25*ballRadius - sX0, (Math.sqrt(Math.pow(spinRadius, 2) - Math.pow(sX0, 2))) , spinR1);
+  var spin1 = circleIntersect(x, y, ballRadius, 25*ballRadius - sX1, (Math.sqrt(Math.pow(spinRadius, 2) - Math.pow(sX1, 2))) , spinR1);
+  var spin2 = circleIntersect(x, y, ballRadius, 25*ballRadius - sX2, (Math.sqrt(Math.pow(spinRadius, 2) - Math.pow(sX2, 2))) , spinR1);
+  var spin3 = circleIntersect(x, y, ballRadius, 25*ballRadius - sX3, (Math.sqrt(Math.pow(spinRadius, 2) - Math.pow(sX3, 2))) , spinR1);
+  var spin4 = circleIntersect(x, y, ballRadius, 25*ballRadius - sX4, (Math.sqrt(Math.pow(spinRadius, 2) - Math.pow(sX4, 2))) , spinR1);
+  var spin5 = circleIntersect(x, y, ballRadius, 25*ballRadius - sX5, (Math.sqrt(Math.pow(spinRadius, 2) - Math.pow(sX5, 2))) , spinR1);
 
-  var spina = circleIntersect(x, y, ballRadius, 25*ballRadius - Math.round(Math.sqrt(Math.pow(spinRSmall, 2) - Math.pow(sYa, 2))), sYa, spinR1);
-  var spinb = circleIntersect(x, y, ballRadius, 25*ballRadius - Math.round(Math.sqrt(Math.pow(spinRSmall, 2) - Math.pow(sYb, 2))), sYb, spinR1);
-  var spinc = circleIntersect(x, y, ballRadius, 25*ballRadius - Math.round(Math.sqrt(Math.pow(spinRSmall, 2) - Math.pow(sYc, 2))), sYc, spinR1);
-  var spind = circleIntersect(x, y, ballRadius, 25*ballRadius - Math.round(Math.sqrt(Math.pow(spinRSmall, 2) - Math.pow(sYd, 2))), sYd, spinR1);
-  var spine = circleIntersect(x, y, ballRadius, 25*ballRadius - Math.round(Math.sqrt(Math.pow(spinRSmall, 2) - Math.pow(sYe, 2))), sYe, spinR1);
+  var spina = circleIntersect(x, y, ballRadius, 25*ballRadius - (Math.sqrt(Math.pow(spinRSmall, 2) - Math.pow(sYa, 2))), sYa, spinR1);
+  var spinb = circleIntersect(x, y, ballRadius, 25*ballRadius - (Math.sqrt(Math.pow(spinRSmall, 2) - Math.pow(sYb, 2))), sYb, spinR1);
+  var spinc = circleIntersect(x, y, ballRadius, 25*ballRadius - (Math.sqrt(Math.pow(spinRSmall, 2) - Math.pow(sYc, 2))), sYc, spinR1);
+  var spind = circleIntersect(x, y, ballRadius, 25*ballRadius - (Math.sqrt(Math.pow(spinRSmall, 2) - Math.pow(sYd, 2))), sYd, spinR1);
+  var spine = circleIntersect(x, y, ballRadius, 25*ballRadius - (Math.sqrt(Math.pow(spinRSmall, 2) - Math.pow(sYe, 2))), sYe, spinR1);
 
 // random bounce
   if (inter2 || inter3 || inter4 || inter5 || inter6 || inter7 || inter8 || inter9 || inter10) 
@@ -318,20 +307,20 @@ function paint(event) {
   if (d < ballRadius + blRdRandom) {y += random; x += random;}
   */
   
-  if (xEdgeL) {x += xBounce;}
+  if      (xEdgeL) {x += xBounce;}
   else if (xEdgeR) {x -= xBounce;}
   else if (yEdgeT) {y += yBounce;}
   else if (yEdgeB) {y -= yBounce;}
 	  
   else {
-      var i;
+      var  i;
       for (i = 0; i < ballRadius; i++) {
         var j = Math.round(Math.sqrt(Math.pow(ballRadius, 2) - Math.pow(i, 2)));
-        if      (cX > x-i && cX < x) {
+        if        (cX > x-i && cX < x) {
           if      (cY > y-j && cY < y) {x += i/ballr3; y += j/ballr3;}
           else if (cY < y+j && cY > y) {x += i/ballr3; y -= j/ballr3;}
         }
-        else if (cX < x+i && cX > x) {
+        else if   (cX < x+i && cX > x) {
           if      (cY > y-j && cY < y) {x -= i/ballr3; y += j/ballr3;}
           else if (cY < y+j && cY > y) {x -= i/ballr3; y -= j/ballr3;}
         }
@@ -388,20 +377,20 @@ function paint(event) {
   if (sYd == spinRSmall) {sYd = 0};
   if (sYe == spinRSmall) {sYe = 0};
 
-  drawBall(25*ballRadius - sX0, Math.round(Math.sqrt(Math.pow(spinRadius, 2) - Math.pow(sX0, 2))), spinR1, 0, '#9219c2');
-  drawBall(25*ballRadius - sX1, Math.round(Math.sqrt(Math.pow(spinRadius, 2) - Math.pow(sX1, 2))), spinR1, 0, '#9219c2');
-  drawBall(25*ballRadius - sX2, Math.round(Math.sqrt(Math.pow(spinRadius, 2) - Math.pow(sX2, 2))), spinR1, 0, '#9219c2');
-  drawBall(25*ballRadius - sX3, Math.round(Math.sqrt(Math.pow(spinRadius, 2) - Math.pow(sX3, 2))), spinR1, 0, '#abf5f5');
-  drawBall(25*ballRadius - sX4, Math.round(Math.sqrt(Math.pow(spinRadius, 2) - Math.pow(sX4, 2))), spinR1, 0, '#9219c2');
-  drawBall(25*ballRadius - sX5, Math.round(Math.sqrt(Math.pow(spinRadius, 2) - Math.pow(sX5, 2))), spinR1, 0, '#9219c2');
+  drawBall(25*ballRadius - sX0, Math.sqrt(Math.pow(spinRadius, 2) - Math.pow(sX0, 2)), spinR1, 0, '#9219c2');
+  drawBall(25*ballRadius - sX1, Math.sqrt(Math.pow(spinRadius, 2) - Math.pow(sX1, 2)), spinR1, 0, '#9219c2');
+  drawBall(25*ballRadius - sX2, Math.sqrt(Math.pow(spinRadius, 2) - Math.pow(sX2, 2)), spinR1, 0, '#9219c2');
+  drawBall(25*ballRadius - sX3, Math.sqrt(Math.pow(spinRadius, 2) - Math.pow(sX3, 2)), spinR1, 0, '#abf5f5');
+  drawBall(25*ballRadius - sX4, Math.sqrt(Math.pow(spinRadius, 2) - Math.pow(sX4, 2)), spinR1, 0, '#9219c2');
+  drawBall(25*ballRadius - sX5, Math.sqrt(Math.pow(spinRadius, 2) - Math.pow(sX5, 2)), spinR1, 0, '#9219c2');
 
-  drawBall(25*ballRadius - Math.round(Math.sqrt(Math.pow(spinRSmall, 2) - Math.pow(sYa, 2))), sYa, spinR1, 0, '#9219c2');
-  drawBall(25*ballRadius - Math.round(Math.sqrt(Math.pow(spinRSmall, 2) - Math.pow(sYb, 2))), sYb, spinR1, 0, '#abf5f5');
-  drawBall(25*ballRadius - Math.round(Math.sqrt(Math.pow(spinRSmall, 2) - Math.pow(sYc, 2))), sYc, spinR1, 0, '#9219c2');
-  drawBall(25*ballRadius - Math.round(Math.sqrt(Math.pow(spinRSmall, 2) - Math.pow(sYd, 2))), sYd, spinR1, 0, '#9219c2');
-  drawBall(25*ballRadius - Math.round(Math.sqrt(Math.pow(spinRSmall, 2) - Math.pow(sYe, 2))), sYe, spinR1, 0, '#9219c2');
+  drawBall(25*ballRadius - Math.sqrt(Math.pow(spinRSmall, 2) - Math.pow(sYa, 2)), sYa, spinR1, 0, '#9219c2');
+  drawBall(25*ballRadius - Math.sqrt(Math.pow(spinRSmall, 2) - Math.pow(sYb, 2)), sYb, spinR1, 0, '#abf5f5');
+  drawBall(25*ballRadius - Math.sqrt(Math.pow(spinRSmall, 2) - Math.pow(sYc, 2)), sYc, spinR1, 0, '#9219c2');
+  drawBall(25*ballRadius - Math.sqrt(Math.pow(spinRSmall, 2) - Math.pow(sYd, 2)), sYd, spinR1, 0, '#9219c2');
+  drawBall(25*ballRadius - Math.sqrt(Math.pow(spinRSmall, 2) - Math.pow(sYe, 2)), sYe, spinR1, 0, '#9219c2');
   
-  if (x > canvas.width - ballRadius && y < 2.5*ballRadius) {
+  if (x > canvasW - ballRadius && y < 2.5*ballRadius) {
     alert('Congratulations! You\'ve made it!')
   };
 
