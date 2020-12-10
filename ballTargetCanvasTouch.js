@@ -35,12 +35,12 @@
 // https://spicyyoghurt.com/tutorials/html5-javascript-game-development/collision-detection-physics
 // https://stackoverflow.com/questions/1664785/resize-html5-canvas-to-fit-window
  
-var canvas        = document.getElementById("myCanvas");
-var ctx           = canvas.getContext("2d")            ;
-var canvas.width  = 800				       ;
-var canvas.height = 800				       ;
-var canvasW       = canvas.width		       ;
-var canvasH       = canvas.height		       ;
+var canvas     = document.getElementById("myCanvas");
+var ctx        = canvas.getContext("2d")            ;
+canvas.width   = 800				    ;
+canvas.height  = 800				    ;
+var canvasW    = canvas.width		            ;
+var canvasH    = canvas.height		            ;
 
 canvas.addEventListener("touchstart", function(event) {event.preventDefault()})
 canvas.addEventListener("touchmove" , function(event) {event.preventDefault()})
