@@ -228,7 +228,7 @@ function paint(event) {
   var canvasW =  canvas.width			    ;
   var canvasH =  canvas.height			    ;
   var windowW =  window.innerWidth                  ;
-  var offset  = (windowWidth - canvasW) / 2         ;  
+  var offset  = (windowW - canvasW) / 2             ;  
   var cX      = event.touches[0].pageX - offset     ; 
   var cY      = event.touches[0].pageY		    ;
 /*   x,  y = position middle of ball; cX, cY = "client" = mouse; px, py = position x, y + px  */
