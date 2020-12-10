@@ -41,6 +41,8 @@ canvas.addEventListener('touchmove', logKey);
 function logKey(e) {
   var cx = Math.round(e.touches[0].clientX*100)/100;
   var cy = Math.round(e.touches[0].clientY*100)/100;
+  var px = Math.round(e.touches[0].pageX*100)/100;
+  var py = Math.round(e.touches[0].pageY*100)/100;
   var sx = Math.round(e.touches[0].screenX*100)/100;
   var sy = Math.round(e.touches[0].screenY*100)/100;
   //  var bodyWidth = document.body.clientWidth;
@@ -49,6 +51,7 @@ function logKey(e) {
   var offset = (windowWidth - canvas.width) / 2;
   screenLog.innerText = `
     Client X/Y: ${cx}, ${cy}
+    Page X/Y: ${px}, ${py}
     Screen X/Y: ${sx}, ${sy}
     window Width: ${windowWidth}
     window Height: ${windowHeight}
