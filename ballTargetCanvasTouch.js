@@ -38,9 +38,10 @@
 var canvas     = document.getElementById("myCanvas");
 var ctx        = canvas.getContext("2d")            ;
 var windowW    = window.innerWidth                  ;
+var offset     = (windowW - canvasW) / 2            ;  
 
-canvas.width   = window.innerWidth * 0.8            ;
-canvas.height  = window.innerWidth * 0.8            ;
+canvas.width   = 800           		     	    ;
+canvas.height  = 800            		    ;
 
 var canvasW    = canvas.width		            ;
 var canvasH    = canvas.height		            ;
@@ -228,8 +229,6 @@ drawRect(23*ballRadius, 	   0,            h, 2*ballRadius, '#FFFF00');
 // ------------------------------------------------------------------------------------------------------------------------ //
 
 function paint(event) {
-  var windowW =  window.innerWidth                  ;
-  var offset  = (windowW - canvasW) / 2             ;  
   var cX      = event.touches[0].pageX - offset     ; 
   var cY      = event.touches[0].pageY		    ;
 /*   x,  y = position middle of ball; cX, cY = "client" = mouse; px, py = position x, y + px  */
