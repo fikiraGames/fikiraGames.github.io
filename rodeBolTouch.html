@@ -45,11 +45,13 @@ function logKey(e) {
   var sy = Math.round(e.touches[0].screenY*100)/100;
   //  var bodyWidth = document.body.clientWidth;
   var windowWidth = window.innerWidth
+  var windowHeight = window.innerHeight
   var offset = (windowWidth - canvas.width) / 2;
   screenLog.innerText = `
     Client X/Y: ${cx}, ${cy}
     Screen X/Y: ${sx}, ${sy}
     window Width: ${windowWidth}
+    window Height: ${windowHeight}
     offset: ${offset}`;
 }
 
