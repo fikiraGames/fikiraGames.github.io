@@ -1,39 +1,40 @@
-
 "use strict";
 
-
-//												|		.		.		
-//												|						
-//								       |		|		 .		 .	    |		
-//------------------------------       |		|				   .	|
-//							  w8       |		|					   .|	
-//        -----------------------------|		|			 .			|
-//								  w7   |		|				 		|
-//------------------------------	   |		|					   .|
-//							  w6	   |		|						|
-//   .         .					   |		|						|
-//resetX9    randomX10				   |		|						|
-//        .         .				   |		|						|	
-//   randomX9    randomX8			   |		|						|
-//   .         .  ---------------------|		|						|
-//randomX7   randomX6            w5    |		|						|
-//        .         .                  |		|						|
-//   randomX5    randomX4              |w9		|w11				    |w12
-//------------------------------       |								|
-//                            w4       |								|
-//                                     |								|
-//     . ---------------------------------------------------------------------
-//	randomX3			w3			   					  |
-//									   		              |
+//	       			                        |		.		.		
+//				                        |					
+//				       |		|		 .		 .	    |		
+//------------------------------       |		|				   .	    |
+//			      w8       |		|					   .|	
+//        -----------------------------|		|			 .		    |
+//				  w7   |		|				 	    |
+//------------------------------       |		|					   .|
+//			     w6	       |		|					    |
+//   .         .		       |		|					    |
+//resetX9    randomX10		       |		|					    |
+//        .         .		       |		|					    |	
+//   randomX9    randomX8	       |		|					    |
+//   .         .  ---------------------|		|					    |
+//randomX7   randomX6            w5    |		|					    |
+//        .         .                  |		|					    |
+//   randomX5    randomX4              |w9		|w11				            |w12
+//------------------------------       |							    |
+//                            w4       |							    |
+//                                     |							    |
+//     . --------------------------------------------------------------------------------------------
+//	randomX3			w3 	         	  |
+//							          |
 //----------------------------------------- .     		  |
-//	w2				                    randomX2   		  |w10
-//									   		              |
-//                       w1 -------------------------------
-//									                                        O <- x,y,ballRadius    
+//	w2			     randomX2   		  |w10
+//								  |
+//                               w1 -------------------------------
+//									    O <- x,y,ballRadius    
 //---------------------------------------------------------------------------
 
+// https://stackoverflow.com/questions/38634654/why-does-the-clientx-and-y-change-on-scroll
+// https://developer.mozilla.org/en-US/docs/Games/Tutorials/2D_Breakout_game_pure_JavaScript/Bounce_off_the_walls
+// https://spicyyoghurt.com/tutorials/html5-javascript-game-development/collision-detection-physics
+// https://stackoverflow.com/questions/1664785/resize-html5-canvas-to-fit-window
 
-// https://developer.mozilla.org/en-US/docs/Games/Tutorials/2D_Breakout_game_pure_JavaScript/Paddle_and_keyboard_controls
 var canvas            = document.getElementById("myCanvas");
 var body              = document.getElementById("myBody");
 
