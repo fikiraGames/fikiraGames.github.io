@@ -50,8 +50,10 @@ drawBall(       x ,        y ,  ballRadius,  0 , '#cf0c0c');
 function paint(event) {
 /*   x,  y = position middle of ball; cX, cY = "client" = mouse; px, py = position x, y + px  */
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  var cX = event.clientX - 440; // Because '0' of canvas left edge lays 440px to the right
-  var cY = event.clientY;
+  var windowWidth = window.innerWidth
+  var offset = (windowWidth - canvas.width) / 2; 
+  var cX = event.pageX - offset; // Because '0' of canvas left edge lays 440px to the right
+  var cY = event.pageY;
   var ballr3 = (ballRadius / 3);
   var xEdgeL = x  - ballRadius <= 0            ;
   var xEdgeR = x  + ballRadius >= canvas.width ;
