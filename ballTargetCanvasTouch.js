@@ -37,7 +37,7 @@
  
 var canvas     = document.getElementById("myCanvas");
 var ctx        = canvas.getContext("2d")            ;
-canvas.width   = 1000				    ;
+canvas.width   = 800				    ;
 //canvas.height  = 800				    ;
 var canvasW    = canvas.width		            ;
 var canvasH    = canvas.width		            ;
