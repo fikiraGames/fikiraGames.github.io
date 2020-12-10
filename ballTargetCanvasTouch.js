@@ -37,8 +37,11 @@
  
 var canvas     = document.getElementById("myCanvas");
 var ctx        = canvas.getContext("2d")            ;
-canvas.width   = 900				    ;
-canvas.height  = 900				    ;
+var windowW    = window.innerWidth                  ;
+
+canvas.width   = window.innerWidth * 0.8            ;
+canvas.height  = window.innerWidth * 0.8            ;
+
 var canvasW    = canvas.width		            ;
 var canvasH    = canvas.height		            ;
  
