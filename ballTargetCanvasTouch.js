@@ -225,20 +225,16 @@ drawRect(23*ballRadius, 	   0,            h, 2*ballRadius, '#FFFF00');
 // ------------------------------------------------------------------------------------------------------------------------ //
 // ------------------------------------------------------------------------------------------------------------------------ //
 
-function paint(event) {
-  var cX      = event.touches[0].pageX - offset     ; 
-  var cY      = event.touches[0].pageY		    ;
+function paint(event) {  
+  ctx.clearRect(0, 0, canvasW, canvasH)             ;
+  var cX     = event.touches[0].pageX - offset      ; 
+  var cY     = event.touches[0].pageY		    ;
 /*   x,  y = position middle of ball; cX, cY = "client" = mouse; px, py = position x, y + px  */
   var ballr3 = (ballRadius / 3)			    ;
   var xEdgeL =  x - ballRadius <= 0                 ;
   var xEdgeR =  x + ballRadius >= canvasW           ;
   var yEdgeT =  y - ballRadius <= 0                 ;
-  var yEdgeB =  y + ballRadius >= canvasH           ;
-  ctx.clearRect(0, 0, canvasW, canvasH)             ;
-/* for mouse devices (laptop, desktop,...)
-  var cX = event.clientX - offset; 
-  var cY = event.clientY;
-*/	
+  var yEdgeB =  y + ballRadius >= canvasH           ;	
   // if ball against wall (B,T,L,R) (except ballradius space from both edges)
   wall(a1 , b1 , w1, h  , ballRadius, wBounce)   ;
   wall(a2 , b2 , w2, h  , ballRadius, wBounce)	 ;
