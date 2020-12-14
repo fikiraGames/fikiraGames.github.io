@@ -233,10 +233,24 @@ function edges() {
 };	
 
 function circleIntersect(x1, y1, r1, x2, y2, r2) {
+/* 
+https://spicyyoghurt.com/tutorials/html5-javascript-game-development/collision-detection-physics
+c^2 = a^2+b^2
+c   = sqrt(a^1+b^2)
+a   = x1-x2
+b   = y1-y2
+Thus:
+c   = sqrt( (x1-x2)^2 + (y1-y2)^2 )
+if radius1 + radius2 is equal or smaller than c there is an overlap
+Thus:
+overlap if  r1+r2    <= sqrt( (x1-x2)^2 + (y1-y2)^2 )
+or
+overlap if (r1+r2)^2 <=     ( (x1-x2)^2 + (y1-y2)^2 )
+*/
     // Calculate the distance between the two circles
-  let squareDistance = (x1-x2)*(x1-x2) + (y1-y2)*(y1-y2);
+  let squareDistance = Math.pow(x1-x2, 2) + Math.pow(y1-y2, 2);
     // When the distance is smaller or equal to the sum of the two radius, the circles touch or overlap
-  return squareDistance <= ((r1 + r2) * (r1 + r2))
+  return squareDistance <= Math.pow(r1+r2, 2)
 };
 
 function nextLevel(xIsMoreThan, xIsLessThan, yIsLessThan, textAlert, xTo, yTo, newLevel, newPosX, newPosY) {
