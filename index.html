@@ -1,54 +1,81 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8">    
     <title>Fikira Games</title>
     <meta name="fikira" content="Games">
     <link rel="stylesheet" href="ballTargetCanvas.css">
-<!-- 
+    <!--
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="jquery.js"></script>
--->
-    
+    -->
 </head>
-
 <body id="myBody">
 
  <div>
-     
-   <br>
-     <h2><mark>Ball Target Canvas Game</mark></h2>
-   <br>
+ <br>
+ <h2><mark>Ball Target Canvas Game</mark></h2>
+ <br>
  <hr>
  
-   <br>
-     <h4>Move the red ball with mouse or finger to the next level</h4>
-     <h4>Watch out though, purple balls can throw you anywhere,</h4>
-     <h4>when touching a light one, you'll be thrown back to the start</h4>
-     <h4>Good luck!</h4>
-   <br>
-
+  <br>
+  <h4>Move the red ball with mouse or finger to the next level</h4>
+  <h4>Watch out though, purple balls can throw you anywhere,</h4>
+  <h4>when touching a light one, you'll be thrown back to the start</h4>
+  <h4>Good luck!</h4>
+  <br>
+   <img src="gameLevels1.png" width="300" height="300">
+   <img src="gameLevels2.png" width="300" height="300">
+   <img src="gameLevels3.png" width="300" height="300">
+  <br>
  <hr>
-     <h4>For Mouse devices (laptop, desktop,...):</h4>
-   <br>
-     <a href="gameLevelsMouse.html"><img src="gameLevels1.png" width="300" height="300"></a>
-     <a href="gameLevelsMouse.html"><img src="gameLevels2.png" width="300" height="300"></a>
-     <a href="gameLevelsMouse.html"><img src="gameLevels3.png" width="300" height="300"></a>
-
-   <br>
-   <br>
+ <h4>For Mouse devices (laptop, desktop,...):</h4>
+ <br>
+ 
+<label for="difficultyMouse">Difficulty:</label>
+ <select name="difficultyMouse" id="difficultyMouse">
+  <option value="easy">easy</option>
+  <option value="difficult">difficult</option>
+ </select>
+ 
+ <a href="gameLevelsMouse.html" id="selectMouse" ><input onclick="diffMouse()" type="submit" value="let's start!"></a>
+ 
+ <br>
+ <br>
  <hr>
-     <h4>For Touch devices (smartphone, tablet):</h4>
-     <h5>(for optimal use -> rotate screen horizontally)</h5> 
-   <br>
-     <a href="gameLevelsTouch.html"><img src="gameLevels1.png" width="300" height="300"></a>
-     <a href="gameLevelsTouch.html"><img src="gameLevels2.png" width="300" height="300"></a>
-     <a href="gameLevelsTouch.html"><img src="gameLevels3.png" width="300" height="300"></a>
-   <br> 
-     
+ <h4>For Touch devices (smartphone, tablet):</h4>
+ <h5>(for optimal use -> rotate screen horizontally)</h5> 
+ <br>
+ 
+ <label for="difficultyTouch">Difficulty:</label>
+  <select name="difficultyTouch" id="difficultyTouch">
+   <option value="easy">easy</option>
+   <option value="difficult">difficult</option>
+  </select> 
+  
+ <a href="gameLevelsTouch.html" id="selectTouch" ><input onclick="diffTouch()" type="submit" value="let's start!"></a>
+ 
  </div>
  
+ <script>
+ 
+function diffMouse() { 
+  var x = document.getElementById('difficultyMouse');
+  if (x.value == "difficult") {
+    document.getElementById('selectMouse').href="gameLevelsMouseDiff.html"; 
+  } else {
+    document.getElementById('selectMouse').href="gameLevelsMouse.html"
+  }
+};
+function diffTouch() { 
+  var x = document.getElementById('difficultyTouch');
+  if (x.value == "difficult") {
+    document.getElementById('selectTouch').href="gameLevelsTouchDiff.html"; 
+  } else {
+    document.getElementById('selectTouch').href="gameLevelsTouch.html"
+  }
+};
+ </script>
 </body>
 
 </html>
