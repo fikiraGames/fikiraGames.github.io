@@ -28,7 +28,6 @@ canvas.addEventListener("touchmove",   function(event) {event.preventDefault()})
 // ------------------------------------------------------------------------------------------------------------------------ //
 //     											        VARIABLES												            //
 // ------------------------------------------------------------------------------------------------------------------------ //
-
 // circles
 
 var i          =                0	 	 ;
@@ -36,15 +35,12 @@ var ballRadius = canvasW     *  0.08  	 ;
 var ballr3     = (ballRadius /  3)		 ;
 
 var blRdRandom = ballRadius  /  6.4	 	 ;
-var spinRadius = ballRadius  *  9.4	 	 ;
+var spinRadius = ballRadius  *  9.8	 	 ;
 var spinRad2   = ballRadius  *  9.8	 	 ;
 var spinRad3   = ballRadius  * 12.5	 	 ;
 
-var spinRSmall = ballRadius  *  6.5	 	 ;
-var spinR1     = ballRadius  /  6  	 	 ;
-
-var xBounce    = ballRadius  /  4	 	 ;
-var yBounce    = ballRadius  /  4     	 ;
+var spinRSmall = ballRadius  *  6.8	 	 ;
+var spinR1     = ballRadius  /  7  	 	 ;
 
 var x          = canvasW    /  2   	 	 ; 
 var y          = canvasH - 2*ballRadius - 1;
@@ -52,27 +48,35 @@ var y          = canvasH - 2*ballRadius - 1;
 //var x          = canvasW     -  160   	 ; 
 //var y          = ballRadius  *  1        ;
 
-var a = 2 * (Math.sqrt( Math.pow( (ballRadius + spinR1) * 1.03, 2) / 2));
+var px         = ballRadius * 0.03;
+var py         = ballRadius * 0.03;
+
+var xBounce    = ballRadius *  0.4;
+var yBounce    = ballRadius *  0.4;
+var wBounce    = ballRadius *  0.4;
+var hardBounce = ballRadius *  0.8;
+
+var a = 2 * (Math.sqrt( Math.pow( (ballRadius + spinR1) * 1.08, 2) / 2));
 
 // random ball x
 // level 1
-var randomX2  = ballRadius *  3.5; var randomY2  = ballRadius *   9.0;
+var randomX2  = ballRadius *  3.8; var randomY2  = ballRadius *   9.0;
 var randomX3  = ballRadius *  9.0; var randomY3  = ballRadius *   6.5;
 var randomX4  = ballRadius *  9.0; var randomY4  = ballRadius *   1.5;
 var randomX5  = ballRadius *  3.5; var randomY5  = ballRadius *   4.0;
 
 // level 2
-var randomX6  = 4.3*a  ; var randomY6  = 3.9*a ;
-var randomX7  = 2.3*a  ; var randomY7  = 3.9*a ;
-var randomX8  = 3.3*a  ; var randomY8  = 2.9*a ;
-var randomX9  = 1.3*a  ; var randomY9  = 2.9*a ;
-var randomX10 = 4.3*a  ; var randomY10 = 1.9*a ;
-var randomX11 = 2.3*a  ; var randomY11 = 1.9*a ;
-var randomX12 = 3.3*a  ; var randomY12 = 0.9*a ;
+var randomX6  = 4.0*a  ; var randomY6  = 3.8*a ;
+var randomX7  = 2.0*a  ; var randomY7  = 3.8*a ;
+var randomX8  = 3.0*a  ; var randomY8  = 2.8*a ;
+var randomX9  = 1.0*a  ; var randomY9  = 2.8*a ;
+var randomX10 = 4.0*a  ; var randomY10 = 1.8*a ;
+var randomX11 = 2.0*a  ; var randomY11 = 1.8*a ;
+var randomX12 = 3.0*a  ; var randomY12 = 0.8*a ;
 
-var randomX13 = 5.3*a  ; var randomY13 = 2.9*a ;
-var randomX14 = 6.3*a  ; var randomY14 = 1.9*a ;
-var randomX15 = 5.3*a  ; var randomY15 = 0.9*a ;
+var randomX13 = 5.0*a  ; var randomY13 = 2.8*a ;
+var randomX14 = 6.0*a  ; var randomY14 = 1.8*a ;
+var randomX15 = 5.0*a  ; var randomY15 = 0.8*a ;
 
 // level 3
 var partSpinR = spinRadius / 5;
@@ -98,19 +102,15 @@ var sYf 	  = spinRad3      ;
 
 // reset ball x
 // level 1
-var resetX1   = ballRadius * 1.5;
-var resetY1   = ballRadius * 7.5;
+var resetX1   = ballRadius * 1.4;
+var resetY1   = ballRadius * 7.0;
 // level 2
-var resetX2   = 1.3 * a; 
-var resetY2   = 4.9 * a;
-var resetX3   = 1.3 * a; 
-var resetY3   = 0.9 * a;
+var resetX2   = 1.0 * a; var resetY2   = 4.8 * a;
+var resetX3   = 1.0 * a; var resetY3   = 0.8 * a;
 
 // level 3
-var resetX4   = 1.3 * a; 
-var resetY4   = 5.4 * a;
-var resetX5   = 1.3 * a; 
-var resetY5   = 0.9 * a;
+var resetX4   = 1.3 * a; var resetY4   = 5.4 * a;
+var resetX5   = 1.3 * a; var resetY5   = 0.9 * a;
 
 // walls
 // height (horizontal), width (vert)
@@ -137,14 +137,6 @@ var a7 = canvasW - ballRadius  ; var b7 = ballRadius *  0.0        ; var w7 = ca
 var a8 = canvasW - 4*ballRadius; var b8 = ballRadius *  0.0        ; var w8 = ballRadius * 1.9         ;
 // level 3
 var a13= ballRadius *  8.8     ; var b13= ballRadius *  0.0        ; var w13= ballRadius * 0.75        ;
-
-var px         = ballRadius * 0.03;
-var py         = ballRadius * 0.03;
-
-var xBounce    = ballRadius *  0.3;
-var yBounce    = ballRadius *  0.3;
-var wBounce    = ballRadius *  0.6;
-var hardBounce = ballRadius *  1.2;
 
 // level
 var level      = 1;
@@ -638,13 +630,13 @@ function paint3(event) {
         }
       }
   };
-  sX0 += 2; sX1 += 2; sX2 += 2; sX3 += 2; sX4 += 2; sX5 += 2;
+  sX0 += 1; sX1 += 1; sX2 += 1; sX3 += 1; sX4 += 1; sX5 += 1;
   
-  sX6 += 3; 
+  sX6 += 2; 
 
-  sYa += 2; sYb += 2; sYc += 2; sYd += 2; sYe += 2;
+  sYa += 1; sYb += 1; sYc += 1; sYd += 1; sYe += 1;
 
-  sYf += 3;
+  sYf += 2;
 
   if (sX0 >= spinRadius) {sX0 = 0};
   if (sX1 >= spinRadius) {sX1 = 0};
