@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+        <meta charset="UTF-8">
+        <title>HTML5 Game</title>
+        <meta name="description" content="A basic HTML5 game">
+        <meta name="author" content="[Your name]">
+        <script type="text/javascript" src="gameWorldCircles.js"></script>
+        <script type="text/javascript" src="gameObject.js"></script>
+        <script type="text/javascript" src="circle.js"></script>      
+<!-- https://spicyyoghurt.com/tutorials/html5-javascript-game-development/develop-a-html5-javascript-game -->
+	</head>
+
+<body>
+
+		<canvas id="canvas" width="1200" height="800" style="border:1px solid lightgrey;">
+    		Your browser does not support the HTML5 canvas tag.
+		</canvas>
+
+	<script>
+		window.onload = function () {var gameWorld = new GameWorld('canvas');}
+	</script>
+
+</body>
+
+</html>
