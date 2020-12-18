@@ -44,24 +44,28 @@ class GameWorld {
             new Circle(this.context, Math.random() * canvas.width / 2,  Math.random() * canvas.height / 4,  7, Math.random() * 10 ,  Math.random() * 10 ),
             new Circle(this.context, Math.random() * canvas.width / 2,  Math.random() * canvas.height / 4,  7, Math.random() * 10 ,  Math.random() * 10 ),
             new Circle(this.context, Math.random() * canvas.width / 2,  Math.random() * canvas.height / 4,  7, Math.random() * 10 ,  Math.random() * 10 ),
-            new Circle(this.context, Math.random() * canvas.width / 2,  Math.random() * canvas.height / 4,  7, Math.random() * 10 ,  Math.random() * 10 ),
-            new Circle(this.context, Math.random() * canvas.width / 2,  Math.random() * canvas.height / 4,  7, Math.random() * 10 ,  Math.random() * 10 ),
-               
+
             new Circle(this.context, Math.random() * canvas.width / 2,  Math.random() * canvas.height / 4, 15, Math.random() * 10 ,  Math.random() * 10 ),
             new Circle(this.context, Math.random() * canvas.width / 2,  Math.random() * canvas.height / 4, 15, Math.random() * 10 ,  Math.random() * 10 ),
             new Circle(this.context, Math.random() * canvas.width / 2,  Math.random() * canvas.height / 4, 15, Math.random() * 10 ,  Math.random() * 10 ),
             new Circle(this.context, Math.random() * canvas.width / 2,  Math.random() * canvas.height / 4, 15, Math.random() * 10 ,  Math.random() * 10 ),
             new Circle(this.context, Math.random() * canvas.width / 2,  Math.random() * canvas.height / 4, 15, Math.random() * 10 ,  Math.random() * 10 ),
             new Circle(this.context, Math.random() * canvas.width / 2,  Math.random() * canvas.height / 4, 15, Math.random() * 10 ,  Math.random() * 10 ),
-            
+            new Circle(this.context, Math.random() * canvas.width / 2,  Math.random() * canvas.height / 4, 15, Math.random() * 10 ,  Math.random() * 10 ),
+
             new Circle(this.context, Math.random() * canvas.width / 2,  Math.random() * canvas.height / 4, 30, Math.random() * 10 ,  Math.random() * 10 ),
             new Circle(this.context, Math.random() * canvas.width / 2,  Math.random() * canvas.height / 4, 30, Math.random() * 10 ,  Math.random() * 10 ),
             new Circle(this.context, Math.random() * canvas.width / 2,  Math.random() * canvas.height / 4, 30, Math.random() * 10 ,  Math.random() * 10 ),
-            
-            new Circle(this.context, Math.random() * canvas.width / 2,  Math.random() * canvas.height / 4, 60, Math.random() * 10 ,  Math.random() * 10 )
+            new Circle(this.context, Math.random() * canvas.width / 2,  Math.random() * canvas.height / 4, 30, Math.random() * 10 ,  Math.random() * 10 ),
+            new Circle(this.context, Math.random() * canvas.width / 2,  Math.random() * canvas.height / 4, 30, Math.random() * 10 ,  Math.random() * 10 ),
+
+            new Circle(this.context, Math.random() * canvas.width / 2,  Math.random() * canvas.height / 4, 60, Math.random() * 10 ,  Math.random() * 10 ),            
+            new Circle(this.context, Math.random() * canvas.width / 2,  Math.random() * canvas.height / 4, 60, Math.random() * 10 ,  Math.random() * 10 ),            
+            new Circle(this.context, Math.random() * canvas.width / 2,  Math.random() * canvas.height / 4, 60, Math.random() * 10 ,  Math.random() * 10 ),            
+
+            new Circle(this.context, Math.random() * canvas.width / 2,  Math.random() * canvas.height / 4, 80, Math.random() * 10 ,  Math.random() * 10 )
         ];
     }
-
 
     gameLoop(timeStamp) {
         // Calculate how much time has passed
