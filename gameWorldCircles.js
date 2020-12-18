@@ -6,18 +6,20 @@ const restitution = 0.90;
 class GameWorld {
 
     constructor(canvasId){
-        this.canvas = null;
-        this.context = null;
-        this.oldTimeStamp = 0;
-        this.gameObjects = [];
-        this.resetCounter = 0;
+        this.canvas 	  = null;
+        this.context 	  = null;
+        this.oldTimeStamp =    0;
+        this.gameObjects  =   [];
+        this.resetCounter =    0;
 
         this.init(canvasId);
     }
 
     init(canvasId) {
-        this.canvas = document.getElementById(canvasId);
-        this.context = this.canvas.getContext('2d');
+        this.canvas 	   = document.getElementById(canvasId);        
+	this.canvas.width  = screen.availWidth   *  0.90 ;
+        this.canvas.height = screen.availHeight  *  0.85 ;
+        this.context 	   = this.canvas.getContext('2d');
 
         this.createWorld();
 
@@ -25,35 +27,40 @@ class GameWorld {
         // The gameLoop() function will be called as a callback of this request
         window.requestAnimationFrame((timeStamp) => {this.gameLoop(timeStamp)});
     }
-
+/*
+        random height:
+	canvas.width  / 2 means the left half of the width, then * Math.random() (which is between 0 and 1), so min = 0, max = canvas.width / 2
+	canvas.height / 4 means the upper quarter of the height, then * Math.random() (which is between 0 and 1), so min = 0, max = canvas.height / 4
+*/
     createWorld() {
         this.gameObjects = [     
-            new Circle(this.context, 240,  80,  7, 130,  10),
-            new Circle(this.context, 270,  10,  7, 130,  10),
-            new Circle(this.context, 310,  50,  7, 130,  10),
-            new Circle(this.context, 330,  80,  7, 130,  10),
-            new Circle(this.context, 360,  60,  7, 130,  10),
-            new Circle(this.context, 390,  20,  7, 130,  10),
-            new Circle(this.context, 420,  10,  7, 130,  10),
-            new Circle(this.context, 450,  10,  7, 130,  10),
-            new Circle(this.context, 480,  10,  7, 130,  10),
-            new Circle(this.context, 510,  10,  7, 130,  10),
-            new Circle(this.context, 540,  10,  7, 130,  10),
+            new Circle(this.context, Math.random() * canvas.width / 2,  Math.random() * canvas.height / 4,  7, Math.random() * 10 ,  Math.random() * 10 ),
+            new Circle(this.context, Math.random() * canvas.width / 2,  Math.random() * canvas.height / 4,  7, Math.random() * 10 ,  Math.random() * 10 ),
+            new Circle(this.context, Math.random() * canvas.width / 2,  Math.random() * canvas.height / 4,  7, Math.random() * 10 ,  Math.random() * 10 ),
+            new Circle(this.context, Math.random() * canvas.width / 2,  Math.random() * canvas.height / 4,  7, Math.random() * 10 ,  Math.random() * 10 ),
+            new Circle(this.context, Math.random() * canvas.width / 2,  Math.random() * canvas.height / 4,  7, Math.random() * 10 ,  Math.random() * 10 ),
+            new Circle(this.context, Math.random() * canvas.width / 2,  Math.random() * canvas.height / 4,  7, Math.random() * 10 ,  Math.random() * 10 ),
+            new Circle(this.context, Math.random() * canvas.width / 2,  Math.random() * canvas.height / 4,  7, Math.random() * 10 ,  Math.random() * 10 ),
+            new Circle(this.context, Math.random() * canvas.width / 2,  Math.random() * canvas.height / 4,  7, Math.random() * 10 ,  Math.random() * 10 ),
+            new Circle(this.context, Math.random() * canvas.width / 2,  Math.random() * canvas.height / 4,  7, Math.random() * 10 ,  Math.random() * 10 ),
+            new Circle(this.context, Math.random() * canvas.width / 2,  Math.random() * canvas.height / 4,  7, Math.random() * 10 ,  Math.random() * 10 ),
+            new Circle(this.context, Math.random() * canvas.width / 2,  Math.random() * canvas.height / 4,  7, Math.random() * 10 ,  Math.random() * 10 ),
                
-            new Circle(this.context,  10,  50, 15, 130,  10),
-            new Circle(this.context,  20,  60, 15, 130,  10),
-            new Circle(this.context,  30,  70, 15, 130,  10),
-            new Circle(this.context,  40,  80, 15, 130,  10),
-            new Circle(this.context,  50,  90, 15, 130,  10),
-            new Circle(this.context, 150,  20, 15, 130,  10),
+            new Circle(this.context, Math.random() * canvas.width / 2,  Math.random() * canvas.height / 4, 15, Math.random() * 10 ,  Math.random() * 10 ),
+            new Circle(this.context, Math.random() * canvas.width / 2,  Math.random() * canvas.height / 4, 15, Math.random() * 10 ,  Math.random() * 10 ),
+            new Circle(this.context, Math.random() * canvas.width / 2,  Math.random() * canvas.height / 4, 15, Math.random() * 10 ,  Math.random() * 10 ),
+            new Circle(this.context, Math.random() * canvas.width / 2,  Math.random() * canvas.height / 4, 15, Math.random() * 10 ,  Math.random() * 10 ),
+            new Circle(this.context, Math.random() * canvas.width / 2,  Math.random() * canvas.height / 4, 15, Math.random() * 10 ,  Math.random() * 10 ),
+            new Circle(this.context, Math.random() * canvas.width / 2,  Math.random() * canvas.height / 4, 15, Math.random() * 10 ,  Math.random() * 10 ),
             
-            new Circle(this.context, 180,  50, 30, 130,  10),
-            new Circle(this.context, 210, 100, 30, 130,  10),
-            new Circle(this.context,  40,  50, 30, 130,  10),
+            new Circle(this.context, Math.random() * canvas.width / 2,  Math.random() * canvas.height / 4, 30, Math.random() * 10 ,  Math.random() * 10 ),
+            new Circle(this.context, Math.random() * canvas.width / 2,  Math.random() * canvas.height / 4, 30, Math.random() * 10 ,  Math.random() * 10 ),
+            new Circle(this.context, Math.random() * canvas.width / 2,  Math.random() * canvas.height / 4, 30, Math.random() * 10 ,  Math.random() * 10 ),
             
-            new Circle(this.context, 740,  50, 60, 130,  30)
+            new Circle(this.context, Math.random() * canvas.width / 2,  Math.random() * canvas.height / 4, 60, Math.random() * 10 ,  Math.random() * 10 )
         ];
     }
+
 
     gameLoop(timeStamp) {
         // Calculate how much time has passed
