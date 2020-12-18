@@ -16,9 +16,10 @@ class GameWorld {
     }
 
     init(canvasId) {
-        this.canvas 	   = document.getElementById('canvas');        
-	this.canvas.width  = screen.width   *  0.90 ;
-        this.canvas.height = screen.height  *  0.85 ;
+        this.canvas 	   = document.getElementById('canvas');      
+	// https://www.w3schools.com/js/js_window.asp    
+	this.canvas.width  = (window.innerWidth  || document.documentElement.clientWidth  || document.body.clientWidth ) * 0.90;
+        this.canvas.height = (window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight) * 0.90;
         this.context 	   = this.canvas.getContext('2d');
 
         this.createWorld();
