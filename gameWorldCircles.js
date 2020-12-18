@@ -16,7 +16,7 @@ class GameWorld {
     }
 
     init(canvasId) {
-        this.canvas 	   = document.getElementById(canvasId);        
+        this.canvas 	   = document.getElementById('canvas');        
 	this.canvas.width  = screen.availWidth   *  0.90 ;
         this.canvas.height = screen.availHeight  *  0.85 ;
         this.context 	   = this.canvas.getContext('2d');
