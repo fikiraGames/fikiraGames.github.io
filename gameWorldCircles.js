@@ -23,9 +23,9 @@ class GameWorld
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // create button, text input field,... in html document   
 
-        var eP = document.createElement('p');
-        eP.innerHTML = '(50-50.000; default=500)';
-        eP.style.width="165px";
+        var eP = document.createElement('pre');
+        eP.innerHTML = ' 50 - 50.000' + '\n' + 'default = 500';
+        eP.style.width="100px";
 
         var eLabel = document.createElement('label');
         eLabel.htmlFor = 'input';
