@@ -44,10 +44,17 @@ class GameWorld
         pr.style.width		="180px";
         pr.style.marginLeft 	= document.body.clientWidth / 2 - parseInt( pr.style.width, 10) / 2  + "px"; 
 
+	var button 		= document.createElement('button');
+	var a 			= document.createElement('a');
+	a.href 			= "index.html";
+	a.innerHTML 		= "Home";
+	button.appendChild(a);
+
 	document.body.appendChild(slider);
 	document.body.appendChild(pre);
 	document.body.appendChild(pr);
-		
+	document.body.appendChild(button);
+
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         this.canvas = document.getElementById(canvasId);
