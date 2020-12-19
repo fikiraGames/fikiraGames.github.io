@@ -20,50 +20,44 @@ class GameWorld
     init(canvasId) 
     {
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// create button, text input field,... in html document   
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	// create button, text input field,... in html document   
+	// first create pre (textstyle), here a label will be appended
+	// the label is created 'for' with '.htmlFor', text is created ('innerHTML'), and 'width'
+	// the marginLeft is half the body width minus half (label + input box)
 
-        var eP = document.createElement('pre');
-        eP.innerHTML = ' 50 - 50.000' + '\n' + 'default = 500';
-        eP.style.width="100px";
+        var pre = document.createElement('pre');
 
-        var eLabel = document.createElement('label');
-        eLabel.htmlFor = 'input';
-        eLabel.innerHTML = 'speed: ';
-        eLabel.style.width="50px";
+        var pr  = document.createElement('pre');
+        pr.innerHTML = ' 50 - 50.000' + '\n' + 'default = 500';
+        pr.style.width="100px";
+        
+        var label = document.createElement('label');
+        label.htmlFor = 'input';
+        label.innerHTML = 'speed: ';
+        label.style.width="50px";
 
-	var eInput = document.createElement('input');
-	eInput.id = 'input';
-	eInput.style.width="50px";
-	eInput.style.marginTop = "10px"; 
+	var input = document.createElement('input');
+	input.id = 'input';
+	input.style.width="50px";
+        input.style.marginTop = "10px"; 
 
-        eP.style.marginLeft = "" +  document.body.clientWidth / 2 - parseInt(eP.style.width, 10) / 2  + "px"; 
+        pr.style.marginLeft =
+        "" +  document.body.clientWidth / 2 - parseInt(pr.style.width, 10) / 2  + "px"; 
 
-	eLabel.style.marginLeft =
+	label.style.marginLeft =
 	"" +  
 	( document.body.clientWidth / 2 - 
-	((parseInt(eLabel.style.width, 10) + parseInt(eInput.style.width, 10)) / 2) 
+	((parseInt(label.style.width, 10) + parseInt(input.style.width, 10)) / 2) 
 	)  + "px"; 
 
-	eLabel.appendChild(eInput);
-        document.body.appendChild(eLabel);
-	document.body.appendChild(eP);
-		
-		/*
-		var eButton = document.createElement('button');
-		
-		eButton.style.width="50px";
-		eButton.style.marginLeft =
-		"" +  document.body.clientWidth / 2 - parseInt(eButton.style.width, 10) / 2 + "px"; 
-    	eButton.style.marginTop = "10px"; 
+	label.appendChild(input);
+	pre.appendChild(label);
 
-		eButton.id = 'button';
-        eButton.innerHTML = 'speed';
-
-        document.body.appendChild(eButton);
-		*/
+        document.body.appendChild(pre);
+	document.body.appendChild(pr);
 		
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         this.canvas = document.getElementById(canvasId);
 	    // https://www.w3schools.com/js/js_window.asp    
