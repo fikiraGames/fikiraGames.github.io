@@ -32,23 +32,22 @@ class GameWorld
         eLabel.innerHTML = 'speed: ';
         eLabel.style.width="50px";
 
-		var eInput = document.createElement('input');
-	    eInput.id = 'input';
-	    eInput.style.width="50px";
-		eInput.style.marginTop = "10px"; 
+	var eInput = document.createElement('input');
+	eInput.id = 'input';
+	eInput.style.width="50px";
+	eInput.style.marginTop = "10px"; 
 
-        eP.style.marginLeft =
-        "" +  document.body.clientWidth / 2 - parseInt(eP.style.width, 10) / 2  + "px"; 
+        eP.style.marginLeft = "" +  document.body.clientWidth / 2 - parseInt(eP.style.width, 10) / 2  + "px"; 
 
-	    eLabel.style.marginLeft =
-		"" +  
-		( document.body.clientWidth / 2 - 
-		((parseInt(eLabel.style.width, 10) + parseInt(eInput.style.width, 10)) / 2) 
-		)  + "px"; 
+	eLabel.style.marginLeft =
+	"" +  
+	( document.body.clientWidth / 2 - 
+	((parseInt(eLabel.style.width, 10) + parseInt(eInput.style.width, 10)) / 2) 
+	)  + "px"; 
 
-	    eLabel.appendChild(eInput);
+	eLabel.appendChild(eInput);
         document.body.appendChild(eLabel);
-	    document.body.appendChild(eP);
+	document.body.appendChild(eP);
 		
 		/*
 		var eButton = document.createElement('button');
