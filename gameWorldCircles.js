@@ -21,40 +21,31 @@ class GameWorld
     {
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	// create button, text input field,... in html document   
-	// first create pre (textstyle), here a label will be appended
-	// the label is created 'for' with '.htmlFor', text is created ('innerHTML'), and 'width'
-	// the marginLeft is half the body width minus half (label + input box)
+	var slider 		= document.createElement('input');
+	slider.style.width 	= document.body.clientWidth * 0.90 + "px";
+	slider.style.marginLeft = document.body.clientWidth * 0.05 + "px";
+	slider.style.marginTop  = "10px"; 
 
-        var pre = document.createElement('pre');
+	slider.id    = 'input';
+	slider.type  = 'range';
+	slider.min   =    '50';
+	slider.max   =  '5000';
+	slider.value =   '500';
+	    
+	var pre = document.createElement('pre');   
+	pre.style.width		="60px";
+	pre.style.marginLeft 	= document.body.clientWidth / 2 - parseInt(pre.style.width, 10) / 2 + "px";
+        pre.innerHTML 		= slider.value; // Display the default slider value
+ 	// Update the current slider value (each time you drag the slider handle)
+	slider.oninput 		= function() {pre.innerHTML = this.value}
 
-        var pr  = document.createElement('pre');
-        pr.innerHTML = ' 50 - 50.000' + '\n' + 'default = 500';
-        pr.style.width="100px";
-        
-        var label = document.createElement('label');
-        label.htmlFor = 'input';
-        label.innerHTML = 'speed: ';
-        label.style.width="50px";
+        var pr  		= document.createElement('pre');
+        pr.innerHTML 		= 'speed: 50 - 50.000' + '\n' + '  default = 500';
+        pr.style.width		="180px";
+        pr.style.marginLeft 	= document.body.clientWidth / 2 - parseInt( pr.style.width, 10) / 2  + "px"; 
 
-	var input = document.createElement('input');
-	input.id = 'input';
-	input.style.width="50px";
-        input.style.marginTop = "10px"; 
-
-        pr.style.marginLeft =
-        "" +  document.body.clientWidth / 2 - parseInt(pr.style.width, 10) / 2  + "px"; 
-
-	label.style.marginLeft =
-	"" +  
-	( document.body.clientWidth / 2 - 
-	((parseInt(label.style.width, 10) + parseInt(input.style.width, 10)) / 2) 
-	)  + "px"; 
-
-	label.appendChild(input);
-	pre.appendChild(label);
-
-        document.body.appendChild(pre);
+	document.body.appendChild(slider);
+	document.body.appendChild(pre);
 	document.body.appendChild(pr);
 		
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
