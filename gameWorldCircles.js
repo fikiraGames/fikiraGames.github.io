@@ -91,54 +91,48 @@ class GameWorld {
         window.requestAnimationFrame((timeStamp) => this.gameLoop(timeStamp));
     }
 	
-    detectCollisions() {
-    /*
-        var obj;
-        for (var i = 0; i < this.gameObjects.length; i++)
-        {
-             obj = this.gameObjects[i];
-  			 var xEdgeL =  obj.x - obj.radius <= 0      ;
-  			 var xEdgeR =  obj.x + obj.radius >= this.canvas.width;
-  			 var yEdgeT =  obj.y - obj.radius <= 0      ;
-  			 var yEdgeB =  obj.y + obj.radius >= this.canvas.height;	
-  			 if      (xEdgeL) {obj.vx += obj.radius*0.2;}
-  			 else if (xEdgeR) {obj.vx -= obj.radius*0.2;}
-  			 else if (yEdgeT) {obj.vy += obj.radius*0.2;}
-  			 else if (yEdgeB) {obj.vy -= obj.radius*0.2;}
-		}
-	*/	
+    detectCollisions() 
+    {	
         var obj1;
         var obj2;
-        for (var i = 0; i < this.gameObjects.length; i++) {
+        for (var i = 0; i < this.gameObjects.length; i++) 
+	{
             this.gameObjects[i].isColliding = false;
         }
         for (var i = 0; i < this.gameObjects.length; i++)
         {
             obj1 = this.gameObjects[i];
             // Check for left and right
-         	if (obj1.x < obj1.radius){
-            	obj1.vx = Math.abs(obj1.vx) * restitution;
-             	obj1.x = obj1.radius;
-         	} else if (obj1.x > canvas.width - obj1.radius){
-             	obj1.vx = -Math.abs(obj1.vx) * restitution;
-             	obj1.x = canvas.width - obj1.radius;
+         	if (obj1.x < obj1.radius)
+		{
+            	  obj1.vx = Math.abs(obj1.vx) * restitution;
+             	  obj1.x = obj1.radius;
+         	} 
+		else if (obj1.x > canvas.width - obj1.radius)
+		{
+             	  obj1.vx = -Math.abs(obj1.vx) * restitution;
+             	  obj1.x = canvas.width - obj1.radius;
          	}
 
          	// Check for bottom and top
          	// top (restitution bigger than side walls hence ' * restitution * restitution')
          	// bottom (restitution (more energy absorption) bigger than top hence ' * restitution * restitution * restitution')
-         	if (obj1.y < obj1.radius){
-             	obj1.vy = Math.abs(obj1.vy) * restitution * restitution;
-             	obj1.y = obj1.radius;
-         	} else if (obj1.y > canvas.height - obj1.radius){
-             	obj1.vy = -Math.abs(obj1.vy) * restitution * restitution * restitution;
-             	obj1.y = canvas.height - obj1.radius;
+         	if (obj1.y < obj1.radius)
+		{
+             	  obj1.vy = Math.abs(obj1.vy) * restitution * restitution;
+             	  obj1.y = obj1.radius;
+         	} 
+		else if (obj1.y > canvas.height - obj1.radius)
+		{
+             	  obj1.vy = -Math.abs(obj1.vy) * restitution * restitution * restitution;
+             	  obj1.y = canvas.height - obj1.radius;
         	}
             for (var j = i + 1; j < this.gameObjects.length; j++)
             {
                 obj2 = this.gameObjects[j];
 
-                if (this.circleIntersect(obj1.x, obj1.y, obj1.radius, obj2.x, obj2.y, obj2.radius)) {
+                if (this.circleIntersect(obj1.x, obj1.y, obj1.radius, obj2.x, obj2.y, obj2.radius)) 
+		{
                     obj1.isColliding = true;
                     obj2.isColliding = true;
 
@@ -149,15 +143,28 @@ class GameWorld {
                     var speed = vRelativeVelocity.x * vCollisionNorm.x + vRelativeVelocity.y * vCollisionNorm.y;
 	//				speed *= Math.min(obj1.restitution, obj2.restitution);
 					
-                    if (speed < 0) {
+                    if (speed < 0) 
+		    {
                         break;
                     }
 
                     var impulse = 2 * speed / (obj1.mass + obj2.mass);
+                    
+                    /*
                     obj1.vx -= (impulse * obj2.mass * vCollisionNorm.x);
                     obj1.vy -= (impulse * obj2.mass * vCollisionNorm.y);
                     obj2.vx += (impulse * obj1.mass * vCollisionNorm.x);
                     obj2.vy += (impulse * obj1.mass * vCollisionNorm.y);
+                    */
+                    
+                    function imp() 
+		    {
+                    	obj1.vx -= ((impulse * obj2.mass * vCollisionNorm.x)/10);
+                    	obj1.vy -= ((impulse * obj2.mass * vCollisionNorm.y)/10);
+                    	obj2.vx += ((impulse * obj1.mass * vCollisionNorm.x)/10);
+                    	obj2.vy += ((impulse * obj1.mass * vCollisionNorm.y)/10);
+                    }
+                    imp();imp();imp();imp();imp();imp();imp();imp();imp();imp();
                 }
             }
         }
