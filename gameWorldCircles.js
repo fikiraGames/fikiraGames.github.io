@@ -50,7 +50,7 @@ class GameWorld
         button.style.marginLeft = document.body.clientWidth / 2 - parseInt( button.style.width, 10) / 2  + "px"; 
 
 	var a 			= document.createElement('a');
-	a.href 			= "";
+	a.href 			= "index.html";
 	a.innerHTML 		= "Home";
 	button.appendChild(a);
 	
