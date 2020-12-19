@@ -45,6 +45,9 @@ class GameWorld
         pr.style.marginLeft 	= document.body.clientWidth / 2 - parseInt( pr.style.width, 10) / 2  + "px"; 
 
 	var button 		= document.createElement('button');
+	button.style.width      ="200px";
+        button.style.marginLeft = document.body.clientWidth / 2 - parseInt( button.style.width, 10) / 2  + "px"; 
+
 	var a 			= document.createElement('a');
 	a.href 			= "index.html";
 	a.innerHTML 		= "Home";
