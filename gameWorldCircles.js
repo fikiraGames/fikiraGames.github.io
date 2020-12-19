@@ -29,7 +29,7 @@ class GameWorld
 	slider.id    = 'input';
 	slider.type  = 'range';
 	slider.min   =    '50';
-	slider.max   =  '5000';
+	slider.max   =  '3000';
 	slider.value =   '500';
 	    
 	var pre = document.createElement('pre');   
@@ -40,7 +40,7 @@ class GameWorld
 	slider.oninput 		= function() {pre.innerHTML = this.value}
 
         var pr  		= document.createElement('pre');
-        pr.innerHTML 		= 'speed: 50 - 50.000' + '\n' + '  default = 500';
+        pr.innerHTML 		= 'speed: 50 - 3000' + '\n' + '  default = 500';
         pr.style.width		="180px";
         pr.style.marginLeft 	= document.body.clientWidth / 2 - parseInt( pr.style.width, 10) / 2  + "px"; 
 
