@@ -19,39 +19,43 @@ class GameWorld
 
     init(canvasId) 
     {
-
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        this.canvas = document.getElementById(canvasId);
+	// https://www.w3schools.com/js/js_window.asp    
+	this.canvas.width  = (window.innerWidth  || document.documentElement.clientWidth  || document.body.clientWidth ) * 0.900;
+        this.canvas.height = (window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight) * 0.825;
+        this.context = this.canvas.getContext('2d');
+        
+	var slider 			= document.createElement('input');
+	slider.style.width 		= document.body.clientWidth * 0.90 + "px";
+	slider.style.marginLeft 	= document.body.clientWidth * 0.05 + "px";
+	slider.style.marginTop 		= "15px"; 
 
-	var slider 		= document.createElement('input');
-	slider.style.width 	= document.body.clientWidth * 0.90 + "px";
-	slider.style.marginLeft = document.body.clientWidth * 0.05 + "px";
-	slider.style.marginTop 	= "10px"; 
-
-	slider.id 		= 'input';
-	slider.type 		= 'range';
-	slider.min 		= '50';
-	slider.max 		= '3000';
-	slider.value 		= '500';
+	slider.id 			= 'input';
+	slider.type 			= 'range';
+	slider.min 			= '50';
+	slider.max 			= '2000';
+	slider.value 			= '1500';
 	    
-	var pre 		= document.createElement('pre');   
-	pre.style.width		="30px";
-	pre.style.marginLeft 	= document.body.clientWidth / 2 - parseInt(pre.style.width, 10) / 2 + "px";
-        pre.innerHTML 		= slider.value; // Display the default slider value
+	var pre 			= document.createElement('pre');   
+	pre.style.width			="30px";
+	pre.style.marginLeft 		= document.body.clientWidth / 2 - parseInt(pre.style.width, 10) / 2 + "px";
+        pre.innerHTML 			= slider.value; // Display the default slider value
  	// Update the current slider value (each time you drag the slider handle)
-	slider.oninput 		= function() {pre.innerHTML = this.value}
+	slider.oninput 			= function() {pre.innerHTML = this.value}
 
-        var pr  		= document.createElement('pre');
-        pr.innerHTML 		= 'speed: 50 - 3000' + '\n' + '  default = 500';
-        pr.style.width		= "130px";
-        pr.style.marginLeft 	= document.body.clientWidth / 2 - parseInt(pr.style.width, 10) / 2  + "px"; 
+        var pr  			= document.createElement('pre');
+        pr.innerHTML 			= 'speed: 50 - 2000' + '\n' + ' default = 1500';
+        pr.style.width			= "130px";
+        pr.style.marginLeft 		= document.body.clientWidth / 2 - parseInt(pr.style.width, 10) / 2  + "px"; 
 
-	var button 		= document.createElement('button');
-	button.style.width      ="50px";
-        button.style.marginLeft = document.body.clientWidth / 2 - parseInt( button.style.width, 10) / 2  + "px"; 
+	var button 			= document.createElement('button');
+	button.style.width      	="50px";
+       	button.style.marginLeft 	= document.body.clientWidth / 2 - parseInt( button.style.width, 10) / 2  + "px"; 
 
-	var a 			= document.createElement('a');
-	a.href 			= "index.html";
-	a.innerHTML 		= "Home";
+	var a 				= document.createElement('a');
+	a.href 				= "";
+	a.innerHTML 			= "Home";
 	button.appendChild(a);
 	
 	document.body.appendChild(slider);
@@ -60,12 +64,6 @@ class GameWorld
 	document.body.appendChild(button);
 	    
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-        this.canvas = document.getElementById(canvasId);
-	// https://www.w3schools.com/js/js_window.asp    
-	this.canvas.width  = (window.innerWidth  || document.documentElement.clientWidth  || document.body.clientWidth ) * 0.90;
-        this.canvas.height = (window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight) * 0.85;
-        this.context = this.canvas.getContext('2d');
 
         this.createWorld();
 
@@ -117,15 +115,16 @@ random height:
     
     gameLoop(timeStamp) 
     {
-    	var speed = 500;
-    	var speedValue = document.getElementById('input').value;
+    	var speed      = 1500;
+    	var speedValue = 2050 - document.getElementById('input').value;
         
-        if (speedValue > 49 && speedValue < 50001)
+        if (speedValue > 49 && speedValue < 2001)
         {
-        	speed = speedValue;
-        } else
+        	speed  = speedValue;
+        } 
+	else
         {
-        	speed = speed;
+        	speed  = speed;
         }
         // Calculate how much time has passed
         var secondsPassed = (timeStamp - this.oldTimeStamp) / speed;
