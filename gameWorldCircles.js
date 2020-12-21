@@ -272,44 +272,44 @@ class GameWorld2
         this.canvas.height = (window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight) * 0.825;
         this.context = this.canvas.getContext('2d');
         
-		var slider 				= document.createElement('input');
-	    slider.style.width 		= document.body.clientWidth * 0.90 + "px";
-	    slider.style.marginLeft = document.body.clientWidth * 0.05 + "px";
-		slider.style.marginTop 	= "15px"; 
+	var slider 			= document.createElement('input');
+	slider.style.width 		= document.body.clientWidth * 0.90 + "px";
+	slider.style.marginLeft 	= document.body.clientWidth * 0.05 + "px";
+	slider.style.marginTop 		= "15px"; 
 
-	    slider.id 				= 'input';
-	    slider.type 			= 'range';
-	    slider.min 				= '50';
-	    slider.max 				= '2000';
-	    slider.value 			= '1500';
+	slider.id 			= 'input';
+	slider.type 			= 'range';
+	slider.min 			= '50';
+	slider.max 			= '2000';
+	slider.value 			= '1500';
 	    
-	    var pre 				= document.createElement('pre');   
-	    pre.style.width			="30px";
-	    pre.style.marginLeft 	= document.body.clientWidth / 2 - parseInt(pre.style.width, 10) / 2 + "px";
+	var pre 			= document.createElement('pre');   
+	pre.style.width			="30px";
+	pre.style.marginLeft 		= document.body.clientWidth / 2 - parseInt(pre.style.width, 10) / 2 + "px";
         pre.innerHTML 			= slider.value; // Display the default slider value
- 		// Update the current slider value (each time you drag the slider handle)
-		slider.oninput 			= function() {pre.innerHTML = this.value}
+ 	// Update the current slider value (each time you drag the slider handle)
+	slider.oninput 			= function() {pre.innerHTML = this.value}
 
-        var pr  				= document.createElement('pre');
+        var pr  			= document.createElement('pre');
         pr.innerHTML 			= 'speed: 50 - 2000' + '\n' + ' default = 1500';
         pr.style.width			= "130px";
-        pr.style.marginLeft 	= document.body.clientWidth / 2 - parseInt(pr.style.width, 10) / 2  + "px"; 
+        pr.style.marginLeft 		= document.body.clientWidth / 2 - parseInt(pr.style.width, 10) / 2  + "px"; 
 
-		var button 				= document.createElement('button');
-		button.style.width      ="50px";
-        button.style.marginLeft = document.body.clientWidth / 2 - parseInt( button.style.width, 10) / 2  + "px"; 
+	var button 			= document.createElement('button');
+	button.style.width      	="50px";
+        button.style.marginLeft 	= document.body.clientWidth / 2 - parseInt( button.style.width, 10) / 2  + "px"; 
 
-		var a 					= document.createElement('a');
-		a.href 					= "";
-		a.innerHTML 			= "Home";
-		button.appendChild(a);
+	var a 				= document.createElement('a');
+	a.href 				= "index.html";
+	a.innerHTML 			= "Home";
+	button.appendChild(a);
 	
-	    document.body.appendChild(slider);
-	    document.body.appendChild(pre);
-	    document.body.appendChild(pr);	
-	    document.body.appendChild(button);
+	document.body.appendChild(slider);
+	document.body.appendChild(pre);
+	document.body.appendChild(pr);	
+	document.body.appendChild(button);
 	    
-		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         this.createWorld();
 
