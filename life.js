@@ -188,7 +188,7 @@ class GameWorld
 	    	button.style.margin     		= '2px';
 
 		var a 					= document.createElement('a');
-		a.href 					= "index.html";
+	    	a.href 					= "index.html";
 		a.innerHTML 				= "Home";
 		button.appendChild(a);
 	
@@ -210,7 +210,7 @@ class GameWorld
 	    
 	    	button.className 		= 'collapsible';
 	    	button.style.width		= '120px';
-	    	button.style.margin     = '2px';
+	    	button.style.margin     	= '2px';
      		button.innerHTML 		= txt + input.value;
 			input.oninput 		    = function() {button.innerHTML = txt + this.value}
 
