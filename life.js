@@ -5,10 +5,10 @@ var grownUp 	=  400;
 var maxChildren =    3;
 var maxCircles  = 1000;
 var counter     =    0;
-var parts 		=   20;
-var total 		= parts * parts;
-var maxCirc	    = 20000;
-var maxPP 		= Math.ceil(maxCirc / total);
+var parts 	=   20;
+var total 	= parts * parts;
+var maxCirc	= 20000;
+var maxPP 	= Math.ceil(maxCirc / total);
 // maxPP = max Circles Per Part
 
 function getRandomInt(minInt, maxInt) 
@@ -141,11 +141,11 @@ class GameWorld
 
     constructor(canvasId)
     {
-        this.canvas = null;
-        this.context = null;
-        this.oldTimeStamp = 0;
-        this.gameObjects = [];
-        this.resetCounter = 0;
+        this.canvas 		= null;
+        this.context 		= null;
+        this.oldTimeStamp 	=    0;
+        this.gameObjects 	=   [];
+        this.resetCounter 	=    0;
 
         this.init(canvasId);
     };
@@ -155,8 +155,8 @@ class GameWorld
 
 		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         this.canvas = document.getElementById(canvasId);
-	    // https://www.w3schools.com/js/js_window.asp    
-	    this.canvas.width  = (window.innerWidth  || document.documentElement.clientWidth  || document.body.clientWidth ) * 0.900;
+	// https://www.w3schools.com/js/js_window.asp    
+	this.canvas.width  = (window.innerWidth  || document.documentElement.clientWidth  || document.body.clientWidth ) * 0.900;
         this.canvas.height = (window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight) * 0.825;
         this.context = this.canvas.getContext('2d');
         
@@ -172,11 +172,11 @@ class GameWorld
 	  	var button4				= document.createElement('button');
 	  	var button5				= document.createElement('button');
 		
-		addButton(input1, button1, 'input1',  '50', '2000', '1900',               'speed: ')
+		addButton(input1, button1, 'input1',  '50', '2000', '1900', 'speed: ')
 		button1.style.marginLeft = document.body.clientWidth / 2 - 367 + 'px'; 
 
 		addButton(input2, button2, 'input2',   '1',   '50',    '3',        'max children: ')
-		addButton(input3, button3, 'input3',  '10',  '500',  '400', 	 	  'adult age: ')
+		addButton(input3, button3, 'input3',  '10',  '500',  '400', 	      'adult age: ')
 		addButton(input4, button4, 'input4', '600', '4000', '1200',             'max age: ')
 		addButton(input5, button5, 'input5', '100', '1500',  '350',         'max objects: ')
 	    
@@ -184,12 +184,12 @@ class GameWorld
 
 		// Home button
 		var button 				= document.createElement('button');
-		button.style.width      ="120px";
-	    button.style.margin     = '2px';
+		button.style.width     		 	="120px";
+	    	button.style.margin     		= '2px';
 
 		var a 					= document.createElement('a');
-		a.href 					= "";
-		a.innerHTML 			= "Home";
+		a.href 					= "index.html";
+		a.innerHTML 				= "Home";
 		button.appendChild(a);
 	
 	    document.body.appendChild(button);
@@ -197,12 +197,12 @@ class GameWorld
 	    function addButton(input, button, id, min, max, val, txt)
 	    {
 	    	input.id 				=       id;
-	    	input.className         = 'slider';
-	    	input.type 			    =  'range';
-	    	input.style.display     = 'table';
+	    	input.className         		= 'slider';
+	    	input.type 			    	=  'range';
+	    	input.style.display     		= 'table';
 	    	input.min 				=      min;
 	    	input.max 				=      max;
-	    	input.value 			=      val;
+	    	input.value 				=      val;
 	    	
 	    	input.style.width 		= document.body.clientWidth * 0.80 + "px";
 	        input.style.marginLeft  = document.body.clientWidth * 0.10 + "px";
